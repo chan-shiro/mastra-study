@@ -1,0 +1,428 @@
+{
+  "search_metadata": {
+    "id": "67e8d7ec198ce46d1121c838",
+    "status": "Success",
+    "json_endpoint": "https://serpapi.com/searches/13028c045d93e26e/67e8d7ec198ce46d1121c838.json",
+    "created_at": "2025-03-30 05:34:36 UTC",
+    "processed_at": "2025-03-30 05:34:36 UTC",
+    "google_url": "https://www.google.co.jp/search?q=AGA&oq=AGA&uule=w+CAIQICILVG9reW8sSmFwYW4&hl=ja&gl=jp&num=10&safe=active&start=0&sourceid=chrome&ie=UTF-8",
+    "raw_html_file": "https://serpapi.com/searches/13028c045d93e26e/67e8d7ec198ce46d1121c838.html",
+    "total_time_taken": 0.9
+  },
+  "search_parameters": {
+    "engine": "google",
+    "q": "AGA",
+    "location_requested": "Tokyo, Japan",
+    "location_used": "Tokyo,Japan",
+    "google_domain": "google.co.jp",
+    "hl": "ja",
+    "gl": "jp",
+    "safe": "active",
+    "start": 0,
+    "num": "10",
+    "device": "desktop"
+  },
+  "search_information": {
+    "query_displayed": "AGA",
+    "total_results": 657000000,
+    "time_taken_displayed": 0.27,
+    "organic_results_state": "Results for exact spelling"
+  },
+  "ads": [
+    {
+      "position": 1,
+      "block_position": "top",
+      "title": "【2025年】AGA治療TOP3 - おすすめのAGAランキング",
+      "link": "https://yourclinic-best.com/002-1-aga23a/",
+      "displayed_link": "https://www.yourclinic-best.com › aga2025年 › 最新top3",
+      "tracking_link": "https://www.google.co.jp/aclk?sa=l&ai=DChcSEwjk14PGirGMAxWXilAGHfVAFjQYABABGgJkZw&co=1&ase=2&gclid=EAIaIQobChMI5NeDxoqxjAMVl4pQBh31QBY0EAAYASAAEgLPmvD_BwE&sig=AOD64_2Z5mlkJuFHwxgULiKf1OkwZMhFoA&q&nis=4&adurl",
+      "description": "実績があり信頼できるクリニックを選ぶことが重要です。厳選したAGAクリニックをご紹介します！ 「業界トップクラスの実績数...",
+      "source": "yourclinic-best.com",
+      "sitelinks": [
+        {
+          "title": "50代男性向けクリニック",
+          "link": "https://yourclinic-best.com/000-4-aga23b/"
+        },
+        {
+          "title": "評判が良い人気のAGAクリニック",
+          "link": "https://www.google.co.jp/aclk?sa=l&ai=DChcSEwjk14PGirGMAxWXilAGHfVAFjQYABAFGgJkZw&co=1&ase=2&gclid=EAIaIQobChMI5NeDxoqxjAMVl4pQBh31QBY0EAAYASADEgJkUvD_BwE&sig=AOD64_0XjC277COF5QjzW7ESm1jV9hdVPg&adurl=&q="
+        },
+        {
+          "title": "40代男性向けクリニック",
+          "link": "https://yourclinic-best.com/000-3-aga23b/"
+        }
+      ]
+    },
+    {
+      "position": 2,
+      "block_position": "top",
+      "title": "【公式】AGA相談の銀クリ - 発毛効果98%の治療が初月1000円",
+      "link": "https://www.google.co.jp/aclk?sa=l&ai=DChcSEwjk14PGirGMAxWXilAGHfVAFjQYABAAGgJkZw&co=1&ase=2&gclid=EAIaIQobChMI5NeDxoqxjAMVl4pQBh31QBY0EAAYAiAAEgLtPfD_BwE&sig=AOD64_2YGt5vGpHhJxhHgxPx4SO3aXPbzA&adurl=&q=",
+      "displayed_link": "https://www.gincli.jp/185万人の実績/開院17年",
+      "tracking_link": "https://www.google.co.jp/aclk?sa=l&ai=DChcSEwjk14PGirGMAxWXilAGHfVAFjQYABAAGgJkZw&co=1&ase=2&gclid=EAIaIQobChMI5NeDxoqxjAMVl4pQBh31QBY0EAAYAiAAEgLtPfD_BwE&sig=AOD64_2YGt5vGpHhJxhHgxPx4SO3aXPbzA&q&nis=4&adurl",
+      "description": "銀座総合美容クリニックは皆さんの「一生の髪のかかりつけ医」。正しく根拠のあるAGA治療を",
+      "source": "銀クリ"
+    },
+    {
+      "position": 3,
+      "block_position": "top",
+      "title": "AGAなら1ヶ月分税込み1760円から - aga抜け毛、薄毛改善...",
+      "link": "https://www.google.co.jp/aclk?sa=l&ai=DChcSEwjk14PGirGMAxWXilAGHfVAFjQYABACGgJkZw&co=1&ase=2&gclid=EAIaIQobChMI5NeDxoqxjAMVl4pQBh31QBY0EAAYAyAAEgI-_fD_BwE&sig=AOD64_2fP3rD9cw4ov7vsu60_QKV23tKOw&adurl=&q=",
+      "displayed_link": "https://www.clinicfor.life/簡単スマホ診療/aga予防・治療",
+      "tracking_link": "https://www.google.co.jp/aclk?sa=l&ai=DChcSEwjk14PGirGMAxWXilAGHfVAFjQYABACGgJkZw&co=1&ase=2&gclid=EAIaIQobChMI5NeDxoqxjAMVl4pQBh31QBY0EAAYAyAAEgI-_fD_BwE&sig=AOD64_2fP3rD9cw4ov7vsu60_QKV23tKOw&q&nis=4&adurl",
+      "description": "保険診療を行っているクリニックだからこそ行える,適正価格での提供を実施。AGA予防...",
+      "source": "クリニックフォア"
+    }
+  ],
+  "knowledge_graph": {
+    "title": "男性型脱毛症",
+    "entity_type": "medicine, health",
+    "kgmid": "/m/0d5tz0",
+    "knowledge_graph_search_link": "https://www.google.co.jp/search?kgmid=/m/0d5tz0&hl=ja-JP&q=%E7%94%B7%E6%80%A7%E5%9E%8B%E8%84%B1%E6%AF%9B%E7%97%87",
+    "serpapi_knowledge_graph_search_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja-JP&kgmid=%2Fm%2F0d5tz0&location=Tokyo%2C+Japan&num=10&q=%E7%94%B7%E6%80%A7%E5%9E%8B%E8%84%B1%E6%AF%9B%E7%97%87&safe=active&start=0",
+    "description": "男性型脱毛症は、思春期以降に発症する進行性の脱毛症のことである。AGAの典型的な経過では脱毛はこめかみの上から始まり、生え際の後退により特徴的な「M字」パターンとなる。また、頭頂部の毛髪は細くなり、薄毛や禿髪となる。 女性の場合には「女性男性型脱毛症」と呼ばれる。",
+    "source": {
+      "name": "ウィキペディア",
+      "link": "https://ja.wikipedia.org/wiki/%E7%94%B7%E6%80%A7%E5%9E%8B%E8%84%B1%E6%AF%9B%E7%97%87"
+    },
+    "icd_10": "L64"
+  },
+  "related_questions": [
+    {
+      "question": "AGA治療は一生続きますか？",
+      "snippet": null,
+      "title": "AI による概要",
+      "link": "https://support.google.com/websearch?p=ai_overviews&hl=ja",
+      "list": [
+        "治療効果が見られたら、薬の種類や量を減らすことができる﻿",
+        "治療を継続することで、毛髪が増えた状態をキープできる﻿",
+        "治療を中断すると再び薄毛が進行する可能性が高い﻿",
+        "症状や生活スタイル、経済的な事情に合わせて治療法を選択する﻿",
+        "医師と密にコミュニケーションを取り、自身の体の変化に注意する﻿",
+        "自己判断だけで薬をやめると再び抜け毛が増えるケースもあります﻿",
+        "治療開始後3〜６ヶ月ほどで効果が得られることが多い傾向ですが、個人差があります﻿",
+        "1年経っても効果がない場合は、他の原因によって薄毛や抜け毛が起こっている場合も考えられます﻿"
+      ],
+      "displayed_link": null,
+      "next_page_token": "eyJvbnMiOiIxMDA0MSIsImZjIjoiRXFFQkNtSkJRUzFMVkdoak5YRlZibFJpVTB4V1JXSXljMjR0Y0dWS2RtcG1SelpKYW1nM09UVkpVV05oVEZVNWVWbExOV1pxUzNRdFRUQjVRbWhvV1RobVkwMTNSWG8wZUY5UU5HdGlSSEF4ZDNGbVZrRnpibEJQUVhkdFRsbzVTWE5HU1VWQ1p4SVhOMDVtYjFvNFJIZExjRmRGYUdKSlVIRmtSRUUyVVRBYUlrRkRSRmhNTkc1R2EyZGlkRVJWYUZSaGFtZEtTV2xCYzBzMlVVcE9NVzVNWldjIiwiZmN2IjoiMyIsImVpIjoiN05mb1o4RHdLcFdFaGJJUHFkREE2UTAiLCJxYyI6IkNnTmhaMkVRQ0gzRDZUY18iLCJxdWVzdGlvbiI6IkFHQeayu+eZguOBr+S4gOeUn+e2muOBjeOBvuOBmeOBi++8nyIsImxrIjoiR2lkaFoyRWc1cks3NTVtQ0lPT0JyeURrdUlEbmxKOGc1N2FhNDRHTklPT0J2dU9CbVNEamdZcyIsImJzIjoiYy1NSzRWSnhkSGQ4dG1uMzg1bE5qeHZYUDluUjhIektfT2ZiWmoxdTdIM2N1Tzl4NDh6SGpkM3Y5OHlYV0Y5dHBDbWxucGllcUFCUnF3QlVyQUJSclFCUnJnQlJENlM2dWRLNWRKRk5mVGFuNDNGanktUEdfc2ROblVCcEVHcnFRakYtZXFxUnNaUWhtdkZBYlFwd2ZRcHdqY2dXT1hMSkFDMVNlTEozNnVQbWJXQnJsajlmdHY5eDQ2VEhUV0J6cHlZWXlVbkpnTXdGS2xHQXFBRnFYSzRBVjhWbHl5VU5OQUpvMzlOMVBVRExIemRPUjNGWmw0YVJ0SlFreUFTd2s0QUtVRndnd0FnQSIsImlkIjoiZmNfN05mb1o4RHdLcFdFaGJJUHFkREE2UTBfMiJ9",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google_related_questions&google_domain=google.com&next_page_token=eyJvbnMiOiIxMDA0MSIsImZjIjoiRXFFQkNtSkJRUzFMVkdoak5YRlZibFJpVTB4V1JXSXljMjR0Y0dWS2RtcG1SelpKYW1nM09UVkpVV05oVEZVNWVWbExOV1pxUzNRdFRUQjVRbWhvV1RobVkwMTNSWG8wZUY5UU5HdGlSSEF4ZDNGbVZrRnpibEJQUVhkdFRsbzVTWE5HU1VWQ1p4SVhOMDVtYjFvNFJIZExjRmRGYUdKSlVIRmtSRUUyVVRBYUlrRkRSRmhNTkc1R2EyZGlkRVJWYUZSaGFtZEtTV2xCYzBzMlVVcE9NVzVNWldjIiwiZmN2IjoiMyIsImVpIjoiN05mb1o4RHdLcFdFaGJJUHFkREE2UTAiLCJxYyI6IkNnTmhaMkVRQ0gzRDZUY18iLCJxdWVzdGlvbiI6IkFHQeayu%2BeZguOBr%2BS4gOeUn%2Be2muOBjeOBvuOBmeOBi%2B%2B8nyIsImxrIjoiR2lkaFoyRWc1cks3NTVtQ0lPT0JyeURrdUlEbmxKOGc1N2FhNDRHTklPT0J2dU9CbVNEamdZcyIsImJzIjoiYy1NSzRWSnhkSGQ4dG1uMzg1bE5qeHZYUDluUjhIektfT2ZiWmoxdTdIM2N1Tzl4NDh6SGpkM3Y5OHlYV0Y5dHBDbWxucGllcUFCUnF3QlVyQUJSclFCUnJnQlJENlM2dWRLNWRKRk5mVGFuNDNGanktUEdfc2ROblVCcEVHcnFRakYtZXFxUnNaUWhtdkZBYlFwd2ZRcHdqY2dXT1hMSkFDMVNlTEozNnVQbWJXQnJsajlmdHY5eDQ2VEhUV0J6cHlZWXlVbkpnTXdGS2xHQXFBRnFYSzRBVjhWbHl5VU5OQUpvMzlOMVBVRExIemRPUjNGWmw0YVJ0SlFreUFTd2s0QUtVRndnd0FnQSIsImlkIjoiZmNfN05mb1o4RHdLcFdFaGJJUHFkREE2UTBfMiJ9"
+    },
+    {
+      "question": "AGA治療は月いくらかかりますか？",
+      "snippet": "AGA治療の年間費用は、治療法やクリニックによって大きく異なります。 例えば、内服薬や外用薬を使用する場合、月額5,000円から15,000円が相場とされ、年間では約6万円から18万円程度が目安です。 ジェネリック医薬品を選べば、さらに費用を抑えることができます。",
+      "title": "AGA治療の費用相場は？薄毛治療の月額コストを抑える方法6選！",
+      "date": "2024/12/27",
+      "link": "https://www.ams-smile.co.jp/column/no28/#:~:text=AGA%E6%B2%BB%E7%99%82%E3%81%AE%E5%B9%B4%E9%96%93%E8%B2%BB%E7%94%A8,%E6%8A%91%E3%81%88%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82",
+      "displayed_link": "https://www.ams-smile.co.jp › column",
+      "source_logo": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9db27bdb6bc0391dcfa94a51f1a4ae797ebdcaf9163028b8b540d1ca18ae6883.png",
+      "next_page_token": "eyJvbnMiOiIxMDA0MSIsImZjIjoiRXFFQkNtSkJRUzFMVkdoak5YRlZibFJpVTB4V1JXSXljMjR0Y0dWS2RtcG1SelpKYW1nM09UVkpVV05oVEZVNWVWbExOV1pxUzNRdFRUQjVRbWhvV1RobVkwMTNSWG8wZUY5UU5HdGlSSEF4ZDNGbVZrRnpibEJQUVhkdFRsbzVTWE5HU1VWQ1p4SVhOMDVtYjFvNFJIZExjRmRGYUdKSlVIRmtSRUUyVVRBYUlrRkRSRmhNTkc1R2EyZGlkRVJWYUZSaGFtZEtTV2xCYzBzMlVVcE9NVzVNWldjIiwiZmN2IjoiMyIsImVpIjoiN05mb1o4RHdLcFdFaGJJUHFkREE2UTAiLCJxYyI6IkNnTmhaMkVRQ0gzRDZUY18iLCJxdWVzdGlvbiI6IkFHQeayu+eZguOBr+aciOOBhOOBj+OCieOBi+OBi+OCiuOBvuOBmeOBi++8nyIsImxrIjoiYzVNeVRFeFBWSGkyYWZmem1VMEtqeHZYS3p5YjB3R2tXeDQzOWo5dTZnU3l1a0dvcVF2STJ2ZTRjU1pJQUFBIiwiYnMiOiJjLU1LNFZKeGRIZDh0bW4zODVsTmp4dlhQOW5SOEh6S19PZmJaajF1N0gzY3VPOXg0OHpIamQzdjk4eVhXRjl0cENtbG5waWVxQUJScXdCVXJBQlJyUUJScmdCUkQ2UzZ1ZEs1ZEpGTmZUYW40M0ZqeS1QR19zZE5uVUJwRUdycVFqRi1lcXFSc1pRaG12RkFiUXB3ZlFwd2pjZ1dPWExKQUMxU2VMSjM2dVBtYldCcmxqOWZ0djl4NDZUSFRXQnpweVlZeVVuSmdNd0ZLbEdBcUFGcVhLNEFWOFZseXlVTk5BSm8zOU4xUFVETEh6ZE9SM0ZabDRhUnRKUWt5QVN3azRBS1VGd2d3QWdBIiwiaWQiOiJmY183TmZvWjhEd0twV0VoYklQcWREQTZRMF8yIn0=",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google_related_questions&google_domain=google.com&next_page_token=eyJvbnMiOiIxMDA0MSIsImZjIjoiRXFFQkNtSkJRUzFMVkdoak5YRlZibFJpVTB4V1JXSXljMjR0Y0dWS2RtcG1SelpKYW1nM09UVkpVV05oVEZVNWVWbExOV1pxUzNRdFRUQjVRbWhvV1RobVkwMTNSWG8wZUY5UU5HdGlSSEF4ZDNGbVZrRnpibEJQUVhkdFRsbzVTWE5HU1VWQ1p4SVhOMDVtYjFvNFJIZExjRmRGYUdKSlVIRmtSRUUyVVRBYUlrRkRSRmhNTkc1R2EyZGlkRVJWYUZSaGFtZEtTV2xCYzBzMlVVcE9NVzVNWldjIiwiZmN2IjoiMyIsImVpIjoiN05mb1o4RHdLcFdFaGJJUHFkREE2UTAiLCJxYyI6IkNnTmhaMkVRQ0gzRDZUY18iLCJxdWVzdGlvbiI6IkFHQeayu%2BeZguOBr%2BaciOOBhOOBj%2BOCieOBi%2BOBi%2BOCiuOBvuOBmeOBi%2B%2B8nyIsImxrIjoiYzVNeVRFeFBWSGkyYWZmem1VMEtqeHZYS3p5YjB3R2tXeDQzOWo5dTZnU3l1a0dvcVF2STJ2ZTRjU1pJQUFBIiwiYnMiOiJjLU1LNFZKeGRIZDh0bW4zODVsTmp4dlhQOW5SOEh6S19PZmJaajF1N0gzY3VPOXg0OHpIamQzdjk4eVhXRjl0cENtbG5waWVxQUJScXdCVXJBQlJyUUJScmdCUkQ2UzZ1ZEs1ZEpGTmZUYW40M0ZqeS1QR19zZE5uVUJwRUdycVFqRi1lcXFSc1pRaG12RkFiUXB3ZlFwd2pjZ1dPWExKQUMxU2VMSjM2dVBtYldCcmxqOWZ0djl4NDZUSFRXQnpweVlZeVVuSmdNd0ZLbEdBcUFGcVhLNEFWOFZseXlVTk5BSm8zOU4xUFVETEh6ZE9SM0ZabDRhUnRKUWt5QVN3azRBS1VGd2d3QWdBIiwiaWQiOiJmY183TmZvWjhEd0twV0VoYklQcWREQTZRMF8yIn0%3D"
+    },
+    {
+      "question": "AGA 何ヶ月で禿げる？",
+      "snippet": null,
+      "title": "AI による概要",
+      "link": "https://support.google.com/websearch?p=ai_overviews&hl=ja",
+      "list": [
+        "AGAは発症してから5年程度かけて徐々に進行し、薄毛になります。﻿",
+        "進行速度がゆっくりであるため、発症していることに気付かない方も多いのがAGAです。﻿",
+        "AGAを発症した場合、平均するとおよそ5年で薄毛が目立つようになると言われています。﻿",
+        "AGA治療を開始すると、10日〜1ヶ月くらいの間に初期脱毛が起こることが一般的です。﻿",
+        "初期脱毛の期間は約1〜2か月続きます。﻿",
+        "個人差はありますが、初期脱毛によって抜ける髪の毛は通常の約2〜3倍くらいと言われています。﻿",
+        "初期脱毛は新しい健康的な髪が生える準備段階で起こる自然な反応であり、過度に心配する必要はありません。﻿",
+        "AGA治療は1年を目安に長期的に行う必要があります。",
+        "3ヶ月で効果が出たからといって治療を辞めてしまうと、症状が再度進行してしまう可能性があるので注意しましょう。"
+      ],
+      "displayed_link": null,
+      "next_page_token": "eyJvbnMiOiIxMDA0MSIsImZjIjoiRXFFQkNtSkJRUzFMVkdoak5YRlZibFJpVTB4V1JXSXljMjR0Y0dWS2RtcG1SelpKYW1nM09UVkpVV05oVEZVNWVWbExOV1pxUzNRdFRUQjVRbWhvV1RobVkwMTNSWG8wZUY5UU5HdGlSSEF4ZDNGbVZrRnpibEJQUVhkdFRsbzVTWE5HU1VWQ1p4SVhOMDVtYjFvNFJIZExjRmRGYUdKSlVIRmtSRUUyVVRBYUlrRkRSRmhNTkc1R2EyZGlkRVJWYUZSaGFtZEtTV2xCYzBzMlVVcE9NVzVNWldjIiwiZmN2IjoiMyIsImVpIjoiN05mb1o4RHdLcFdFaGJJUHFkREE2UTAiLCJxYyI6IkNnTmhaMkVRQ0gzRDZUY18iLCJxdWVzdGlvbiI6IkFHQSDkvZXjg7bmnIjjgafnpr/jgZLjgovvvJ8iLCJsayI6IkdoeGhaMkVnNUwyVklPT0R0dWFjaUNEamdhY2c1NmFfNDRHUzQ0S0wiLCJicyI6ImMtTUs0Vkp4ZEhkOHRtbjM4NWxOanh2WFA5blI4SHpLX09mYlpqMXU3SDNjdU85eDQ4ekhqZDN2OTh5WFdGOXRwQ21sbnBpZXFBQlJxd0JVckFCUnJRQlJyZ0JSRDZTNnVkSzVkSkZOZlRhbjQzRmp5LVBHX3NkTm5VQnBFR3JxUWpGLWVxcVJzWlFobXZGQWJRcHdmUXB3amNnV09YTEpBQzFTZUxKMzZ1UG1iV0JybGo5ZnR2OXg0NlRIVFdCenB5WVl5VW5KZ013RktsR0FxQUZxWEs0QVY4Vmx5eVVOTkFKbzM5TjFQVURMSHpkT1IzRlpsNGFSdEpRa3lBU3drNEFLVUZ3Z3dBZ0EiLCJpZCI6ImZjXzdOZm9aOER3S3BXRWhiSVBxZERBNlEwXzIifQ==",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google_related_questions&google_domain=google.com&next_page_token=eyJvbnMiOiIxMDA0MSIsImZjIjoiRXFFQkNtSkJRUzFMVkdoak5YRlZibFJpVTB4V1JXSXljMjR0Y0dWS2RtcG1SelpKYW1nM09UVkpVV05oVEZVNWVWbExOV1pxUzNRdFRUQjVRbWhvV1RobVkwMTNSWG8wZUY5UU5HdGlSSEF4ZDNGbVZrRnpibEJQUVhkdFRsbzVTWE5HU1VWQ1p4SVhOMDVtYjFvNFJIZExjRmRGYUdKSlVIRmtSRUUyVVRBYUlrRkRSRmhNTkc1R2EyZGlkRVJWYUZSaGFtZEtTV2xCYzBzMlVVcE9NVzVNWldjIiwiZmN2IjoiMyIsImVpIjoiN05mb1o4RHdLcFdFaGJJUHFkREE2UTAiLCJxYyI6IkNnTmhaMkVRQ0gzRDZUY18iLCJxdWVzdGlvbiI6IkFHQSDkvZXjg7bmnIjjgafnpr%2FjgZLjgovvvJ8iLCJsayI6IkdoeGhaMkVnNUwyVklPT0R0dWFjaUNEamdhY2c1NmFfNDRHUzQ0S0wiLCJicyI6ImMtTUs0Vkp4ZEhkOHRtbjM4NWxOanh2WFA5blI4SHpLX09mYlpqMXU3SDNjdU85eDQ4ekhqZDN2OTh5WFdGOXRwQ21sbnBpZXFBQlJxd0JVckFCUnJRQlJyZ0JSRDZTNnVkSzVkSkZOZlRhbjQzRmp5LVBHX3NkTm5VQnBFR3JxUWpGLWVxcVJzWlFobXZGQWJRcHdmUXB3amNnV09YTEpBQzFTZUxKMzZ1UG1iV0JybGo5ZnR2OXg0NlRIVFdCenB5WVl5VW5KZ013RktsR0FxQUZxWEs0QVY4Vmx5eVVOTkFKbzM5TjFQVURMSHpkT1IzRlpsNGFSdEpRa3lBU3drNEFLVUZ3Z3dBZ0EiLCJpZCI6ImZjXzdOZm9aOER3S3BXRWhiSVBxZERBNlEwXzIifQ%3D%3D"
+    },
+    {
+      "question": "AGAは完治しますか？",
+      "snippet": "AGA（男性型脱毛症）は進行性の脱毛症であるため、早期の治療開始が重要です。 AGAを完全に治すことはできませんが、治療を継続することで薄毛の進行を抑え、発毛を促すことは可能です。 また、治療経過によって減薬したり、服薬を終了したりするケースもあります。",
+      "title": "【医師監修】AGAは治る？ 治療法や期間、減薬できるケースを紹介",
+      "date": "2024/09/27",
+      "link": "https://clinic.dmm.com/column/aga-male/2211/#:~:text=AGA%EF%BC%88%E7%94%B7%E6%80%A7%E5%9E%8B%E8%84%B1%E6%AF%9B%E7%97%87,%E3%81%9F%E3%82%8A%E3%81%99%E3%82%8B%E3%82%B1%E3%83%BC%E3%82%B9%E3%82%82%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82",
+      "displayed_link": "https://clinic.dmm.com › column › aga-male",
+      "source_logo": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9db27bdb6bc0391dcfa94a51f1a4ae7976b5898f9c6b9085131722a37fd7ed7a.png",
+      "next_page_token": "eyJvbnMiOiIxMDA0MSIsImZjIjoiRXFFQkNtSkJRUzFMVkdoak5YRlZibFJpVTB4V1JXSXljMjR0Y0dWS2RtcG1SelpKYW1nM09UVkpVV05oVEZVNWVWbExOV1pxUzNRdFRUQjVRbWhvV1RobVkwMTNSWG8wZUY5UU5HdGlSSEF4ZDNGbVZrRnpibEJQUVhkdFRsbzVTWE5HU1VWQ1p4SVhOMDVtYjFvNFJIZExjRmRGYUdKSlVIRmtSRUUyVVRBYUlrRkRSRmhNTkc1R2EyZGlkRVJWYUZSaGFtZEtTV2xCYzBzMlVVcE9NVzVNWldjIiwiZmN2IjoiMyIsImVpIjoiN05mb1o4RHdLcFdFaGJJUHFkREE2UTAiLCJxYyI6IkNnTmhaMkVRQ0gzRDZUY18iLCJxdWVzdGlvbiI6IkFHQeOBr+WujOayu+OBl+OBvuOBmeOBi++8nyIsImxrIjoiR2hsaFoyRWc0NEd2SU9heXUtT0NpaURqZ2I3amdaa2c0NEdMIiwiYnMiOiJjLU1LNFZKeGRIZDh0bW4zODVsTmp4dlhQOW5SOEh6S19PZmJaajF1N0gzY3VPOXg0OHpIamQzdjk4eVhXRjl0cENtbG5waWVxQUJScXdCVXJBQlJyUUJScmdCUkQ2UzZ1ZEs1ZEpGTmZUYW40M0ZqeS1QR19zZE5uVUJwRUdycVFqRi1lcXFSc1pRaG12RkFiUXB3ZlFwd2pjZ1dPWExKQUMxU2VMSjM2dVBtYldCcmxqOWZ0djl4NDZUSFRXQnpweVlZeVVuSmdNd0ZLbEdBcUFGcVhLNEFWOFZseXlVTk5BSm8zOU4xUFVETEh6ZE9SM0ZabDRhUnRKUWt5QVN3azRBS1VGd2d3QWdBIiwiaWQiOiJmY183TmZvWjhEd0twV0VoYklQcWREQTZRMF8yIn0=",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google_related_questions&google_domain=google.com&next_page_token=eyJvbnMiOiIxMDA0MSIsImZjIjoiRXFFQkNtSkJRUzFMVkdoak5YRlZibFJpVTB4V1JXSXljMjR0Y0dWS2RtcG1SelpKYW1nM09UVkpVV05oVEZVNWVWbExOV1pxUzNRdFRUQjVRbWhvV1RobVkwMTNSWG8wZUY5UU5HdGlSSEF4ZDNGbVZrRnpibEJQUVhkdFRsbzVTWE5HU1VWQ1p4SVhOMDVtYjFvNFJIZExjRmRGYUdKSlVIRmtSRUUyVVRBYUlrRkRSRmhNTkc1R2EyZGlkRVJWYUZSaGFtZEtTV2xCYzBzMlVVcE9NVzVNWldjIiwiZmN2IjoiMyIsImVpIjoiN05mb1o4RHdLcFdFaGJJUHFkREE2UTAiLCJxYyI6IkNnTmhaMkVRQ0gzRDZUY18iLCJxdWVzdGlvbiI6IkFHQeOBr%2BWujOayu%2BOBl%2BOBvuOBmeOBi%2B%2B8nyIsImxrIjoiR2hsaFoyRWc0NEd2SU9heXUtT0NpaURqZ2I3amdaa2c0NEdMIiwiYnMiOiJjLU1LNFZKeGRIZDh0bW4zODVsTmp4dlhQOW5SOEh6S19PZmJaajF1N0gzY3VPOXg0OHpIamQzdjk4eVhXRjl0cENtbG5waWVxQUJScXdCVXJBQlJyUUJScmdCUkQ2UzZ1ZEs1ZEpGTmZUYW40M0ZqeS1QR19zZE5uVUJwRUdycVFqRi1lcXFSc1pRaG12RkFiUXB3ZlFwd2pjZ1dPWExKQUMxU2VMSjM2dVBtYldCcmxqOWZ0djl4NDZUSFRXQnpweVlZeVVuSmdNd0ZLbEdBcUFGcVhLNEFWOFZseXlVTk5BSm8zOU4xUFVETEh6ZE9SM0ZabDRhUnRKUWt5QVN3azRBS1VGd2d3QWdBIiwiaWQiOiJmY183TmZvWjhEd0twV0VoYklQcWREQTZRMF8yIn0%3D"
+    }
+  ],
+  "ai_overview": {
+    "page_token": "tCz-G3icvZTfc6o4FMcf9y9ZXvYq-IOKnWF2koAYxSpF29oXBhGCIIKCon27_8v-Rfu4f82GYLFee--d3dnZM50mISc535Pz8Xz9Y73ahH_98qefZUl6z_N5ntdJHJO1W3fiepDwdnraOLwXr9Od4__ur-XA5lLbc2XbyVYHlyP0S8Lt92tXzn9DABsYYf1J6-7cZyk1o14-f25zp4Pc4pxUFjh3JXcevPhVUvJh8qz6CzzZLhVwZwgciyRbCzt1AyrlGKS8xdN_4a8thS7qaT2w60vzoZMd3wTjcVRvCg2pPubtiDqAf2foajEEBABcrSH7Kw0D9X0CwQyC8Oo8JJBOCQZD6ladYUZKB9XoN2u5dKuT3qCSywLldJgSoOpYV2_vAZU-FgWRi8OHVGB14sP-jRWRZkVak_z8RSFVpFzTVLC6OEtEyV0AxkPz5kqDgCnsqysL42-3mBgTqg3HzhHgl4RWSuAXOzo0-F1a1A1Nu0KstT1La_ricjoMBTGf-bm-w950jI00_8KIcNIKifQjEtlBn2-CTtNKpbpeh42Kh5ERkPIdjFIkis_TT-26nsWARsCkCWkgYscgcugDvbI5BpM2RBv6-mUEtTrPNgENDIsdSHlgRjA2DBVRTopXXxnFEVLsI_oFaMZZ5wMc0NBjVmKNOtAZVWKWIWKdvfzAMCqN5ByPBmxDMAInmqNCf4OsntTPQOiDIsLYRIUwJabRYI0Vu0gS0jvnRC14ICWE5yoPzvrhtzxc8v2eoe-wB8EnAKiCNxISUYqi0MMtuzNB2_m0Nbfb3fE7AHG0-AdNwfl_EEE2JkDDFSLwChGtROSmZbCCEAhpyxi8t4wbRGjL2DRrR0n5DBGVKi0RQZhWyyxbRqyzGO-IkJ8hYl4QgRUi_g8QyRkiIUCT0xkRhQyYyyeI_Dctg5HilsN1_9gH5KaP9DpbfQ8V525G07DTJ_PpLsuPUt_vky-WF2X3yS6ms9XyHjYH2WnJbWX6jFy03sWyYLd76_7Rt4dJ-jbbrGrtQLIX6qt1t2wSqWdiMbOexNAUZj3y4oXDR1_A860SSq2gNhhD3Badre36y0joj2rH8CXxWn39af0oDpf7Hj76AlQOSl813QayErR-2ABJtRuGpImwtRFfOjUXdIMZLbqUE1WrtZmqVF67ydsABttGInHRzpFpvbYAcKljW256kB3HsRsdu-l2JFES3AUXkeyUyM3u31LDTYQ",
+    "serpapi_link": "https://serpapi.com/search.json?engine=google_ai_overview&page_token=tCz-G3icvZTfc6o4FMcf9y9ZXvYq-IOKnWF2koAYxSpF29oXBhGCIIKCon27_8v-Rfu4f82GYLFee--d3dnZM50mISc535Pz8Xz9Y73ahH_98qefZUl6z_N5ntdJHJO1W3fiepDwdnraOLwXr9Od4__ur-XA5lLbc2XbyVYHlyP0S8Lt92tXzn9DABsYYf1J6-7cZyk1o14-f25zp4Pc4pxUFjh3JXcevPhVUvJh8qz6CzzZLhVwZwgciyRbCzt1AyrlGKS8xdN_4a8thS7qaT2w60vzoZMd3wTjcVRvCg2pPubtiDqAf2foajEEBABcrSH7Kw0D9X0CwQyC8Oo8JJBOCQZD6ladYUZKB9XoN2u5dKuT3qCSywLldJgSoOpYV2_vAZU-FgWRi8OHVGB14sP-jRWRZkVak_z8RSFVpFzTVLC6OEtEyV0AxkPz5kqDgCnsqysL42-3mBgTqg3HzhHgl4RWSuAXOzo0-F1a1A1Nu0KstT1La_ricjoMBTGf-bm-w950jI00_8KIcNIKifQjEtlBn2-CTtNKpbpeh42Kh5ERkPIdjFIkis_TT-26nsWARsCkCWkgYscgcugDvbI5BpM2RBv6-mUEtTrPNgENDIsdSHlgRjA2DBVRTopXXxnFEVLsI_oFaMZZ5wMc0NBjVmKNOtAZVWKWIWKdvfzAMCqN5ByPBmxDMAInmqNCf4OsntTPQOiDIsLYRIUwJabRYI0Vu0gS0jvnRC14ICWE5yoPzvrhtzxc8v2eoe-wB8EnAKiCNxISUYqi0MMtuzNB2_m0Nbfb3fE7AHG0-AdNwfl_EEE2JkDDFSLwChGtROSmZbCCEAhpyxi8t4wbRGjL2DRrR0n5DBGVKi0RQZhWyyxbRqyzGO-IkJ8hYl4QgRUi_g8QyRkiIUCT0xkRhQyYyyeI_Dctg5HilsN1_9gH5KaP9DpbfQ8V525G07DTJ_PpLsuPUt_vky-WF2X3yS6ms9XyHjYH2WnJbWX6jFy03sWyYLd76_7Rt4dJ-jbbrGrtQLIX6qt1t2wSqWdiMbOexNAUZj3y4oXDR1_A860SSq2gNhhD3Badre36y0joj2rH8CXxWn39af0oDpf7Hj76AlQOSl813QayErR-2ABJtRuGpImwtRFfOjUXdIMZLbqUE1WrtZmqVF67ydsABttGInHRzpFpvbYAcKljW256kB3HsRsdu-l2JFES3AUXkeyUyM3u31LDTYQ"
+  },
+  "organic_results": [
+    {
+      "position": 1,
+      "title": "AGAとは？ | AGA・発毛・薄毛治療のAGAスキンクリニック ...",
+      "link": "https://www.agaskin.net/aga/aga/",
+      "redirect_link": "https://www.google.co.jp/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.agaskin.net/aga/aga/&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0QFnoECBQQAQ",
+      "displayed_link": "https://www.agaskin.net › AGAでお悩みの方へ",
+      "favicon": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9dbc62d405d42546d1197fc12d00968571c0cd27d7aaca60ab3554c3b45b17a2.png",
+      "snippet": "AGAとは、AndrogeneticAlopeciaの略で、男性ホルモン型脱毛症（男性型脱毛症）のことです。 男性型脱毛症とは、成人男性特有の進行性の脱毛症で、生え際や頭頂部の毛髪が ...",
+      "snippet_highlighted_words": [
+        "AGA"
+      ],
+      "sitelinks": {
+        "inline": [
+          {
+            "title": "AGAセルフ診断",
+            "link": "https://www.agaskin.net/aga/check/"
+          },
+          {
+            "title": "AGA・薄毛予防法",
+            "link": "https://www.agaskin.net/aga/yobou/"
+          },
+          {
+            "title": "AGAでお悩みの方へ",
+            "link": "https://www.agaskin.net/aga/"
+          }
+        ]
+      },
+      "source": "agaskin.net"
+    },
+    {
+      "position": 2,
+      "title": "AGA.薄毛.円形脱毛症のクリニック | 駅前AGAクリニック ...",
+      "link": "https://e-aga.jp/",
+      "redirect_link": "https://www.google.co.jp/url?sa=t&source=web&rct=j&opi=89978449&url=https://e-aga.jp/&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0QFnoECBMQAQ",
+      "displayed_link": "https://e-aga.jp",
+      "favicon": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9dbc62d405d42546d1197fc12d009685b0a501002d39825bc7013796e1b682ab.png",
+      "snippet": "駅前AGAクリニックは、初月1800円～の通いやすい価格で、AGA.FAGA.円形脱毛症など、毛髪に関するあらゆる悩みに結果でお答えする毛髪治療に特化したクリニックです。",
+      "snippet_highlighted_words": [
+        "AGA",
+        "AGA"
+      ],
+      "source": "駅前AGAクリニック"
+    },
+    {
+      "position": 3,
+      "title": "【公式】AGAスキンクリニック（Aスキ）｜薄毛・抜け毛治療 ...",
+      "link": "https://www.agaskin.net/",
+      "redirect_link": "https://www.google.co.jp/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.agaskin.net/&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0QFnoECEoQAQ",
+      "displayed_link": "https://www.agaskin.net",
+      "favicon": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9dbc62d405d42546d1197fc12d009685d82b00eab8477281cfb477151c387a64.png",
+      "snippet": "AGAスキンクリニックでは、AGA（発毛・育毛・薄毛）に特化した最先端治療を全国で専門的に行っているクリニックをご紹介しています。患者様一人ひとりのお悩みに合った、 ...",
+      "snippet_highlighted_words": [
+        "AGA",
+        "AGA"
+      ],
+      "sitelinks": {
+        "inline": [
+          {
+            "title": "AGAとは？",
+            "link": "https://www.agaskin.net/aga/aga/"
+          },
+          {
+            "title": "AGA治療費用・料金",
+            "link": "https://www.agaskin.net/price/"
+          },
+          {
+            "title": "岐阜院",
+            "link": "https://www.agaskin.net/clinic/gf/"
+          },
+          {
+            "title": "AGAセルフ診断をする 無料 7問...",
+            "link": "https://www.agaskin.net/aga/check/"
+          }
+        ]
+      },
+      "source": "agaskin.net"
+    },
+    {
+      "position": 4,
+      "title": "AGA（男性型脱毛症） について｜原因・治療・費用など",
+      "link": "https://kichijojiclinic.com/medical/aga/",
+      "redirect_link": "https://www.google.co.jp/url?sa=t&source=web&rct=j&opi=89978449&url=https://kichijojiclinic.com/medical/aga/&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0QFnoECEEQAQ",
+      "displayed_link": "https://kichijojiclinic.com › medical › aga",
+      "favicon": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9dbc62d405d42546d1197fc12d009685220c749d2209a681e8ca6ae666cc3d85.png",
+      "snippet": "AGAは男性ホルモンの一種、「テストステロン」が還元酵素である5αリダクターゼと結合することで「ジヒドロテストステロン(DHT)」へと変化することで生じる脱毛症状です。",
+      "snippet_highlighted_words": [
+        "ホルモン"
+      ],
+      "source": "吉祥寺まいにちクリニック"
+    },
+    {
+      "position": 5,
+      "title": "はじめてのAGAクリニック。AGAとは？薄毛・AGA治療の効果 ...",
+      "link": "https://www.d-clinicgroup.jp/clinic/aga/beginner/",
+      "redirect_link": "https://www.google.co.jp/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.d-clinicgroup.jp/clinic/aga/beginner/&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0QFnoECEQQAQ",
+      "displayed_link": "https://www.d-clinicgroup.jp › clinic › aga › beginner",
+      "favicon": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9dbc62d405d42546d1197fc12d009685943e0efbc78f0cda274abbb887a3d33a.png",
+      "snippet": "AGAは多くの男性が悩んでいる脱毛症です。進行性のため放置しているとどんどん抜け毛が増えていき、取り返しがつかなくなります。しかし、早期に治療を開始すれば回復の ...",
+      "snippet_highlighted_words": [
+        "AGAは多くの男性が悩んでいる脱毛症です"
+      ],
+      "source": "Dクリニックグループ"
+    },
+    {
+      "position": 6,
+      "title": "【おうちAGA】DMMオンラインクリニックのAGA（男性の薄毛）治療",
+      "link": "https://clinic.dmm.com/menu/aga-male/",
+      "redirect_link": "https://www.google.co.jp/url?sa=t&source=web&rct=j&opi=89978449&url=https://clinic.dmm.com/menu/aga-male/&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0QFnoECEMQAQ",
+      "displayed_link": "https://clinic.dmm.com › 診療内容一覧",
+      "favicon": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9dbc62d405d42546d1197fc12d009685e0c029a15ab8a569dd22d1520a6aa76e.png",
+      "snippet": "おうちAGA 1ヶ月あたり2,097円〜（税込）※らくらく定期便12. 通院時間0分; 24時間オンライン診療; 最短当日到着. ※公的医療保険が適用されない自由診療です。",
+      "snippet_highlighted_words": [
+        "AGA"
+      ],
+      "source": "DMMオンラインクリニック"
+    },
+    {
+      "position": 7,
+      "title": "【男性AGA】のオンライン診療",
+      "link": "https://www.clinicfor.life/telemedicine/aga/",
+      "redirect_link": "https://www.google.co.jp/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.clinicfor.life/telemedicine/aga/&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0QFnoECEAQAQ",
+      "displayed_link": "https://www.clinicfor.life › オンライン診療",
+      "favicon": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9dbc62d405d42546d1197fc12d0096855c1a27cafb33544d92b14d9d92a47c76.png",
+      "snippet": "PC・スマホで簡単な完全オンライン完結型の男性AGA（男性型脱毛症）治療。抜け毛を抑え、発毛促進するお薬等の取扱いあり。初診からオンライン診療OK。",
+      "snippet_highlighted_words": [
+        "AGA"
+      ],
+      "source": "クリニックフォア"
+    },
+    {
+      "position": 8,
+      "title": "AGA（男性型脱毛）治療 - 板橋区成増駅前かわい皮膚科",
+      "link": "https://kawai-hifuka.jp/medical/aga",
+      "redirect_link": "https://www.google.co.jp/url?sa=t&source=web&rct=j&opi=89978449&url=https://kawai-hifuka.jp/medical/aga&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0QFnoECEcQAQ",
+      "displayed_link": "https://kawai-hifuka.jp › medical › aga",
+      "favicon": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9dbc62d405d42546d1197fc12d0096856e263311e1d765dd2200a6591a7221fd.png",
+      "snippet": "AGAは、日本人男性の3人に1人が発症していると言われる「男性型脱毛症」のことです。男性ホルモンが主な原因で、髪の毛が細く薄くなってくる症状をいいます。",
+      "snippet_highlighted_words": [
+        "AGA"
+      ],
+      "source": "成増駅前かわい皮膚科"
+    },
+    {
+      "position": 9,
+      "title": "AGA治療は早期対策が鍵｜薄毛・抜け毛に悩んだら❘ ...",
+      "link": "https://www.hiro-clinic.or.jp/aga/",
+      "redirect_link": "https://www.google.co.jp/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.hiro-clinic.or.jp/aga/&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0QFnoECEkQAQ",
+      "displayed_link": "https://www.hiro-clinic.or.jp › aga",
+      "favicon": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9dbc62d405d42546d1197fc12d00968512528225bf50f686e24bacf3294b406a.png",
+      "snippet": "薄毛・抜け毛の原因を医学的に診断し、最適なAGA治療を提供。内服薬や外用薬、生活習慣の見直しなど、ヒロクリニックが一人ひとりに合った治療法をご提案します。",
+      "snippet_highlighted_words": [
+        "薄毛・抜け毛の原因を医学的に診断し、最適なAGA治療を提供"
+      ],
+      "sitelinks": {
+        "inline": [
+          {
+            "title": "AGA治療方法",
+            "link": "https://www.hiro-clinic.or.jp/aga/aga-treatment-options/"
+          },
+          {
+            "title": "全国クリニック情報",
+            "link": "https://www.hiro-clinic.or.jp/aga/access/"
+          },
+          {
+            "title": "AGAとは",
+            "link": "https://www.hiro-clinic.or.jp/aga/aga_explanation/"
+          },
+          {
+            "title": "コラム",
+            "link": "https://www.hiro-clinic.or.jp/aga/column/"
+          }
+        ]
+      },
+      "source": "ヒロクリニック"
+    },
+    {
+      "position": 10,
+      "title": "AGA/FAGAの治療費用・料金 | 薄毛・抜け毛治療ならAGAヘア ...",
+      "link": "https://agahairclinic.or.jp/charge/",
+      "redirect_link": "https://www.google.co.jp/url?sa=t&source=web&rct=j&opi=89978449&url=https://agahairclinic.or.jp/charge/&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0QFnoECEIQAQ",
+      "displayed_link": "https://agahairclinic.or.jp › charge",
+      "favicon": "https://serpapi.com/searches/67e8d7ec198ce46d1121c838/images/9dbc62d405d42546d1197fc12d009685eab90e5a92a51b9c6c5eb18443abf3cf.png",
+      "snippet": "AGAヘアクリニックでは、医学的エビデンスに基づいた方法で、患者様一人ひとりにあった治療プランを適正価格にてご提供します。治療費は1,800円〜最大31,000円※まで。",
+      "snippet_highlighted_words": [
+        "AGA"
+      ],
+      "source": "agahairclinic.or.jp"
+    }
+  ],
+  "related_searches": [
+    {
+      "block_position": 1,
+      "query": "agaとは 男性",
+      "link": "https://www.google.co.jp/search?safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&q=aga%E3%81%A8%E3%81%AF+%E7%94%B7%E6%80%A7&sa=X&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q1QJ6BAhfEAE",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=aga%E3%81%A8%E3%81%AF+%E7%94%B7%E6%80%A7&safe=active&start=0"
+    },
+    {
+      "block_position": 1,
+      "query": "aga治療 後悔",
+      "link": "https://www.google.co.jp/search?safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&q=aga%E6%B2%BB%E7%99%82+%E5%BE%8C%E6%82%94&sa=X&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q1QJ6BAhcEAE",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=aga%E6%B2%BB%E7%99%82+%E5%BE%8C%E6%82%94&safe=active&start=0"
+    },
+    {
+      "block_position": 1,
+      "query": "aga 発症したら終わり",
+      "link": "https://www.google.co.jp/search?safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&q=aga+%E7%99%BA%E7%97%87%E3%81%97%E3%81%9F%E3%82%89%E7%B5%82%E3%82%8F%E3%82%8A&sa=X&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q1QJ6BAhTEAE",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=aga+%E7%99%BA%E7%97%87%E3%81%97%E3%81%9F%E3%82%89%E7%B5%82%E3%82%8F%E3%82%8A&safe=active&start=0"
+    },
+    {
+      "block_position": 1,
+      "query": "AGA薬",
+      "link": "https://www.google.co.jp/search?safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&q=AGA%E8%96%AC&sa=X&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q1QJ6BAhMEAE",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA%E8%96%AC&safe=active&start=0"
+    },
+    {
+      "block_position": 1,
+      "query": "aga治療 デメリット",
+      "link": "https://www.google.co.jp/search?safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&q=aga%E6%B2%BB%E7%99%82+%E3%83%87%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88&sa=X&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q1QJ6BAhLEAE",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=aga%E6%B2%BB%E7%99%82+%E3%83%87%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88&safe=active&start=0"
+    },
+    {
+      "block_position": 1,
+      "query": "agaクリニック",
+      "link": "https://www.google.co.jp/search?safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&q=aga%E3%82%AF%E3%83%AA%E3%83%8B%E3%83%83%E3%82%AF&sa=X&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q1QJ6BAhIEAE",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=aga%E3%82%AF%E3%83%AA%E3%83%8B%E3%83%83%E3%82%AF&safe=active&start=0"
+    },
+    {
+      "block_position": 1,
+      "query": "agaクリニックおすすめ",
+      "link": "https://www.google.co.jp/search?safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&q=aga%E3%82%AF%E3%83%AA%E3%83%8B%E3%83%83%E3%82%AF%E3%81%8A%E3%81%99%E3%81%99%E3%82%81&sa=X&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q1QJ6BAg_EAE",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=aga%E3%82%AF%E3%83%AA%E3%83%8B%E3%83%83%E3%82%AF%E3%81%8A%E3%81%99%E3%81%99%E3%82%81&safe=active&start=0"
+    },
+    {
+      "block_position": 1,
+      "query": "aga 保険適用",
+      "link": "https://www.google.co.jp/search?safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&q=aga+%E4%BF%9D%E9%99%BA%E9%81%A9%E7%94%A8&sa=X&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q1QJ6BAg-EAE",
+      "serpapi_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=aga+%E4%BF%9D%E9%99%BA%E9%81%A9%E7%94%A8&safe=active&start=0"
+    }
+  ],
+  "pagination": {
+    "current": 1,
+    "next": "https://www.google.co.jp/search?q=AGA&safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&ei=7NfoZ8DwKpWEhbIPqdDA6Q0&start=10&sa=N&sstk=Af40H4UGaMI3oVwCFEQL8uOYfjHimls2YD3gybEB7S811sbO8vNVuklE8prPrRS7oxOPQle6zhWlIPEBZk81mGeqyNlnls7LWbNYUw&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q8NMDegQIBxAW",
+    "other_pages": {
+      "2": "https://www.google.co.jp/search?q=AGA&safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&ei=7NfoZ8DwKpWEhbIPqdDA6Q0&start=10&sa=N&sstk=Af40H4UGaMI3oVwCFEQL8uOYfjHimls2YD3gybEB7S811sbO8vNVuklE8prPrRS7oxOPQle6zhWlIPEBZk81mGeqyNlnls7LWbNYUw&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q8tMDegQIBxAE",
+      "3": "https://www.google.co.jp/search?q=AGA&safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&ei=7NfoZ8DwKpWEhbIPqdDA6Q0&start=20&sa=N&sstk=Af40H4UGaMI3oVwCFEQL8uOYfjHimls2YD3gybEB7S811sbO8vNVuklE8prPrRS7oxOPQle6zhWlIPEBZk81mGeqyNlnls7LWbNYUw&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q8tMDegQIBxAG",
+      "4": "https://www.google.co.jp/search?q=AGA&safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&ei=7NfoZ8DwKpWEhbIPqdDA6Q0&start=30&sa=N&sstk=Af40H4UGaMI3oVwCFEQL8uOYfjHimls2YD3gybEB7S811sbO8vNVuklE8prPrRS7oxOPQle6zhWlIPEBZk81mGeqyNlnls7LWbNYUw&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q8tMDegQIBxAI",
+      "5": "https://www.google.co.jp/search?q=AGA&safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&ei=7NfoZ8DwKpWEhbIPqdDA6Q0&start=40&sa=N&sstk=Af40H4UGaMI3oVwCFEQL8uOYfjHimls2YD3gybEB7S811sbO8vNVuklE8prPrRS7oxOPQle6zhWlIPEBZk81mGeqyNlnls7LWbNYUw&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q8tMDegQIBxAK",
+      "6": "https://www.google.co.jp/search?q=AGA&safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&ei=7NfoZ8DwKpWEhbIPqdDA6Q0&start=50&sa=N&sstk=Af40H4UGaMI3oVwCFEQL8uOYfjHimls2YD3gybEB7S811sbO8vNVuklE8prPrRS7oxOPQle6zhWlIPEBZk81mGeqyNlnls7LWbNYUw&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q8tMDegQIBxAM",
+      "7": "https://www.google.co.jp/search?q=AGA&safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&ei=7NfoZ8DwKpWEhbIPqdDA6Q0&start=60&sa=N&sstk=Af40H4UGaMI3oVwCFEQL8uOYfjHimls2YD3gybEB7S811sbO8vNVuklE8prPrRS7oxOPQle6zhWlIPEBZk81mGeqyNlnls7LWbNYUw&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q8tMDegQIBxAO",
+      "8": "https://www.google.co.jp/search?q=AGA&safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&ei=7NfoZ8DwKpWEhbIPqdDA6Q0&start=70&sa=N&sstk=Af40H4UGaMI3oVwCFEQL8uOYfjHimls2YD3gybEB7S811sbO8vNVuklE8prPrRS7oxOPQle6zhWlIPEBZk81mGeqyNlnls7LWbNYUw&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q8tMDegQIBxAQ",
+      "9": "https://www.google.co.jp/search?q=AGA&safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&ei=7NfoZ8DwKpWEhbIPqdDA6Q0&start=80&sa=N&sstk=Af40H4UGaMI3oVwCFEQL8uOYfjHimls2YD3gybEB7S811sbO8vNVuklE8prPrRS7oxOPQle6zhWlIPEBZk81mGeqyNlnls7LWbNYUw&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q8tMDegQIBxAS",
+      "10": "https://www.google.co.jp/search?q=AGA&safe=active&sca_esv=ccca17a2e78580eb&hl=ja&gl=jp&ei=7NfoZ8DwKpWEhbIPqdDA6Q0&start=90&sa=N&sstk=Af40H4UGaMI3oVwCFEQL8uOYfjHimls2YD3gybEB7S811sbO8vNVuklE8prPrRS7oxOPQle6zhWlIPEBZk81mGeqyNlnls7LWbNYUw&ved=2ahUKEwjAlv7FirGMAxUVQkEAHSkoMN0Q8tMDegQIBxAU"
+    }
+  },
+  "serpapi_pagination": {
+    "current": 1,
+    "next_link": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA&safe=active&start=10",
+    "next": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA&safe=active&start=10",
+    "other_pages": {
+      "2": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA&safe=active&start=10",
+      "3": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA&safe=active&start=20",
+      "4": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA&safe=active&start=30",
+      "5": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA&safe=active&start=40",
+      "6": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA&safe=active&start=50",
+      "7": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA&safe=active&start=60",
+      "8": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA&safe=active&start=70",
+      "9": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA&safe=active&start=80",
+      "10": "https://serpapi.com/search.json?device=desktop&engine=google&gl=jp&google_domain=google.co.jp&hl=ja&location=Tokyo%2C+Japan&num=10&q=AGA&safe=active&start=90"
+    }
+  }
+}
