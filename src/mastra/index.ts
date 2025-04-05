@@ -708,13 +708,15 @@ The final output should:
 - Be written in **Markdown format**  
 - Be organized clearly by research item  
 - Reference the original sources (with links) where applicable  
-- Emphasize clarity, depth, and thematic relevance  
+- Emphasize clarity, depth, and thematic relevance
 
 ---
 
 **Note:** You should write in the user's preferred language, but you are free to incorporate findings from sources in any language.
+**Note:** If you confirm or check the output acuracy, you can use readWebPageTool to read the page and check the content.
 `,
-      model: llm
+      model: llm,
+      tools: { readWebPageTool },
     });
     const response = await finalizeAgent.generate(
       `## User query: \n${context.triggerData.query}\n\n` +
