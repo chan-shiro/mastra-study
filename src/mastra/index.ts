@@ -367,12 +367,12 @@ Provide a detailed overview of your research process and how each page contribut
 ### Search query: [Query you used to search]  
 - [ ] [Title 1 with hyperlink] — [Brief snippet or summary of why the page is useful]  
 - [ ] [Title 2 with hyperlink] — [Optional snippet]  
-...  up to 5 URLs per query
+...  up to 3 URLs per query
 
 ### Search query: [Query you used to search]  
 - [ ] [Title 3 with hyperlink] — [Brief snippet or summary of why the page is useful]  
 - [ ] [Title 4 with hyperlink]  
-...  up to 5 URLs per query
+...  up to 5 queries
 
 ---
 
@@ -488,8 +488,13 @@ function writeOutputToFile(output: string, filename: string) {
 
 function addOutputToFile(output: string, filename: string) {
   const filePath = path.join(workspaceDirectory, filename);
+  // Create the directory if it doesn't exist
+  if (!fs.existsSync(workspaceDirectory)) {
+    fs.mkdirSync(workspaceDirectory, { recursive: true });
+  }
   fs.appendFileSync(filePath, output);
 }
+  
 // Workflow 
 export const deepResearchWorkflow = new Workflow({
   name: 'Deep-Research-Workflow',
@@ -667,7 +672,7 @@ ${query}
       // Generate the topic summary
       const topicSummary = await summarizeTopicResultAgent.generate(searchResult);
       consoleLogger.info(`🧸 Topic summary: ${topicSummary.text}`);
-      writeOutputToFile(topicSummary.text, topic.replace(/\s+/g, '_') + '.md');
+      addOutputToFile(topicSummary.text, topic.replace(/\s+/g, '_') + '.md');
       return topicSummary.text;
     });
 
