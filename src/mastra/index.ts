@@ -457,6 +457,7 @@ const summarizeTopicResultAgent = new Agent({
 ### You are a research leader.  
 Your task is to synthesize and summarize research findings based on themes relevant to the given topic.  
 You will be provided with a research topic along with individual page summaries from prior research.
+The summary should not be unnecessarily long, but it must capture as much information as possible without omitting key details.
 
 Your goal is to produce a comprehensive, well-structured summary that integrates the findings across sources, highlighting patterns, contrasts, and key takeaways.  
 You **must include references** to the original sources (with links) to support your conclusions.
