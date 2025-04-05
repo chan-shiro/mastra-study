@@ -7,11 +7,19 @@ import { JSDOM } from 'jsdom';
 import { Workflow, Step } from '@mastra/core/workflows';
 import { Agent } from '@mastra/core/agent';
 import { openai } from '@ai-sdk/openai';
+import { google } from '@ai-sdk/google';
 import { z } from 'zod';
 import fs from 'fs';
 import path from 'path';
 import { createTool } from '@mastra/core';
 import { Readability } from '@mozilla/readability';
+
+
+const llm = openai('gpt-4o-mini');
+// const llm = google('gemini-2.0-flash')
+
+const workspaceDirectory = process.env.WORKSPACE_DIR || '../../workspace';
+const taskPlanFile = 'taskplan.md';
 
 
 const consoleLogger = createLogger({
@@ -260,7 +268,8 @@ export const readWebPageTool = createTool({
         content = article.textContent!;
       }
     } catch (error) {
-      console.error('Error parsing article:', error);
+      let err = error as any;
+      consoleLogger.error(`Error parsing article: ${err.message ? err.message : JSON.stringify(err)}`);
       // コンテンツと関係なさそうなタグを削除（例：head, script, iframe）
       await page.evaluate(() => {
         const selectorsToRemove = ['head', 'script', 'iframe'];
@@ -280,7 +289,7 @@ export const readWebPageTool = createTool({
             return el.innerHTML;
           }
         }
-        // どれも見つからなかった場合は、ページ全体の HTML を返す
+        // どれも見つからなかった場合は、ページ全体の TEXT を返す
         return document.body.innerText;
       }, selectors);
     }
@@ -296,45 +305,39 @@ export const readWebPageTool = createTool({
   },
 });
 
-const llm = openai('gpt-4o');
-
-const workspaceDirectory = process.env.WORKSPACE_DIR || '../../../workspace';
-const taskPlanFile = 'taskplan.md';
 
 // Agent
 
 export const taskPlannerAgent = new Agent({
   name: 'Task-Planner-Agent',
   instructions: `
-You are a leading researcher. Your task is to extract research topic from user's query and break down the research topic into smaller tasks.
-  You will receive a topic and you need to create a list of tasks that need to be completed to research the topic.
-  Your research output is expected to be thorough and detailed. Web search can be very deep and comprehensive.
+You are a leading researcher.
+Your task is to create a detailed research plan based on the user's query.
 
-  Planning output should be in the following format:
-  
-  # Website Research
-    [Instructions of the research task overview]
+Output should be in markdown format.
+Your output should be in the following format:
 
-[ ] 1. [Research topic 1]
+# Website Research
+  Conduct in-depth research using reputable online sources, including academic journals, whitepapers, government reports, company websites, industry news outlets, and expert blogs. The goal is to gather comprehensive, accurate, and up-to-date information relevant to each subtopic.
 
-[ ] 2. [Research topic 2]
-    ... up to 10 tasks
+[ ] 1. [Research topic 1]  
 
-  # Analyze the research output
-    [Instructions of analyzing the research output]
+[ ] 2. [Research topic 2]  
+    ... up to 5 tasks  
 
-[ ] 1. [Analyze topic 1]
+# Analyze the research output  
+  Critically evaluate the collected information, identify patterns, contradictions, and trends. Assess the credibility of sources and summarize key insights. Where applicable, extract quantitative data or qualitative comparisons for further synthesis.
 
-[ ] 2. [Analyze topic 2]
-    ... up to 10 tasks
+[ ] 1. [Analyze topic 1]  
 
-  # Write a report
-    Write a report based on the research output.
-    If the output contains comparable information, write a table comparing the information.
-    Report should be in markdown format.
+[ ] 2. [Analyze topic 2]  
+    ... up to 5 tasks  
 
-  **Note: You are expected to generate outputs in user's language. However, research should not be restricted in user's language.**
-  **Note: You can preliminary very shallow web search for a better planning.**
+# Write a report  
+  Write a comprehensive report based on the research findings. If the data includes comparable information, present it in a table format for clarity. The report should be written in Markdown format for ease of formatting and readability.  
+
+**Note: You are expected to generate outputs in the user's language. However, research should not be limited to sources in the user's language.**  
+**Note: A shallow preliminary web search may be conducted to support better planning.** 
   `,
   model: llm,
   tools: { organicResultsTool },
@@ -344,48 +347,63 @@ You are a leading researcher. Your task is to extract research topic from user's
 const searchListAgent = new Agent({
   name: 'Search-List-Agent',
   instructions: `
-  You are a leading researcher.
-  Your task is to create a list of urls to read based on the research topic.
-  You will receive a research topic and you need to create a list of urls to read.
-  You have to pick 20 urls for the topic.
-  You need to evaluate the page and decide if the page is useful for the research topic.
+### You are a leading researcher.  
+Your task is to compile a curated list of URLs relevant to the research topic provided.  
+You will receive a research topic and are required to identify and evaluate 20 useful URLs.  
 
-  You can use web search to find the urls.
-  Your research output is expected to be thorough and detailed. Web search can be very deep and comprehensive.
+Use comprehensive and in-depth web searches to locate high-quality sources such as academic articles, whitepapers, official websites, industry publications, and credible news outlets.  
+Critically assess each page to ensure it provides valuable insights for the research topic.  
 
-  Your output should be in the following format:
-  # Research Topic
-  [Research topic]
-  # Pages
-  [Instructions of the research task overview]
+Your output should follow the format below:
 
-  ### Search query: [Query you used to search]
-- [ ] [Title 1 with link] -- [Snippet]
-- [ ] [Title 2 with link]
-...
+---
 
-### Search query: [Query you used to search]
-- [ ] [Title 3 with link] -- [Snippet]
-- [ ] [Title 4 with link]
-  ... up to 10 urls
-  **Note: You are expected to generate outputs in user's language. However, research should not be restricted in user's language.**
+# Research Topic  
+[Insert research topic here]
+
+# Pages  
+Provide a detailed overview of your research process and how each page contributes to understanding the topic.
+
+### Search query: [Query you used to search]  
+- [ ] [Title 1 with hyperlink] — [Brief snippet or summary of why the page is useful]  
+- [ ] [Title 2 with hyperlink] — [Optional snippet]  
+...  up to 5 URLs per query
+
+### Search query: [Query you used to search]  
+- [ ] [Title 3 with hyperlink] — [Brief snippet or summary of why the page is useful]  
+- [ ] [Title 4 with hyperlink]  
+...  up to 5 URLs per query
+
+---
+
+**Note: You are expected to write in the user's language. However, research sources should not be limited to that language.**  
+**Note: Conducting broad and in-depth web searches is encouraged to ensure comprehensive coverage.**
 `,
-  tools: { organicResultsTool, readWebPageTool },
+  tools: { organicResultsTool },
   model: llm,
 });
 
 const summaryAgent = new Agent({
   name: 'Summary-Agent',
   instructions: `
-  You are a leading researcher.
-  **Your task is to summarize the website content based on the topic-relevant themes.**
-  You will receive a research topic and page url.
-  You need to summarize the page content.
+### You are a leading researcher.  
+**Your task is to summarize the content of a webpage based on themes relevant to the given research topic.**  
+You will be provided with a research topic and a webpage URL.  
+Your goal is to read and understand the content, then produce a concise and accurate summary that highlights the key points relevant to the research theme.
 
-  Your output should be in the following format:
-  ### [Title of the page with link]
-  **概要:**\
-  [Summary of the page content]
+Your output should follow the format below:
+
+---
+
+### [Title of the page with hyperlink]  
+**Summary:**  
+[Concise summary of the page content, focused on relevance to the research topic]
+
+---
+
+This format is designed to help structure insights for later synthesis into a larger research report or analysis.
+
+**Note:** Summaries should be written in the user's preferred language, but you may analyze content from sources in any language.
 `,
   model: llm,
   tools: { readWebPageTool },
@@ -402,16 +420,23 @@ type ResearchItem = z.infer<typeof ResearchItemSchema>;
 function extractWebsiteResearch(markdown: string): ResearchItem[] {
   // 1. "Website Research" セクションのみを抽出
   const sectionStart = markdown.indexOf("# Website Research");
-  if (sectionStart === -1) return [];
+  if (sectionStart === -1) {
+    consoleLogger.error('Website Research section not found');
+    return [];
+  }
   // 次のヘッダー("#")が現れるまでのテキストを取得
   const sectionEnd = markdown.indexOf("#", sectionStart + 1);
   const sectionText = sectionEnd !== -1
     ? markdown.slice(sectionStart, sectionEnd)
     : markdown.slice(sectionStart);
+  if (!sectionText) {
+    consoleLogger.error('No content found in Website Research section');
+    return [];
+  }
 
   // 2. 正規表現で各項目を抽出する
-  // パターン: [ ] {number}. {topic}\n  - {description}
-  const regex = /\[\s*\]\s*(\d+)\.\s*(.+?)\n\s*-\s*(.+)/g;
+  // パターン: [ ] {number}. {topic} {description}
+  const regex = /\[\s*\]\s*(\d+)\.\s*(.+)/g;
   const items: ResearchItem[] = [];
   let match: RegExpExecArray | null;
 
@@ -419,7 +444,7 @@ function extractWebsiteResearch(markdown: string): ResearchItem[] {
     items.push({
       number: parseInt(match[1]),
       topic: match[2].trim(),
-      description: match[3].trim(),
+      description: "",
     });
   }
 
@@ -429,14 +454,21 @@ function extractWebsiteResearch(markdown: string): ResearchItem[] {
 const summarizeTopicResultAgent = new Agent({
   name: 'Summarize-Topic-Result-Agent',
   instructions: `
-  You are a research leader.
-  Your task is to summarize the research output based on the topic-relevant themes.
-  You will receive a research topic and the research output for each page.
-  You need to summarize the research output based on the topic-relevant themes.
-  You must add references to the original pages.
-  Output should be in markdown format.
+### You are a research leader.  
+Your task is to synthesize and summarize research findings based on themes relevant to the given topic.  
+You will be provided with a research topic along with individual page summaries from prior research.
+
+Your goal is to produce a comprehensive, well-structured summary that integrates the findings across sources, highlighting patterns, contrasts, and key takeaways.  
+You **must include references** to the original sources (with links) to support your conclusions.
+
+Your output should be written in **Markdown format** to ensure clarity and readability.
+
+---
+
+**Note:** The summary should be written in the user's preferred language, but the sources can be in any language. Focus on insights and factual consistency across the materials.
   `,
   model: llm,
+  tools: { readWebPageTool },
 });
 
 function checkTask(markdown: string, taskTopic: string): string {
@@ -447,6 +479,10 @@ function checkTask(markdown: string, taskTopic: string): string {
 
 function writeOutputToFile(output: string, filename: string) {
   const filePath = path.join(workspaceDirectory, filename);
+  // Create the directory if it doesn't exist
+  if (!fs.existsSync(workspaceDirectory)) {
+    fs.mkdirSync(workspaceDirectory, { recursive: true });
+  }
   fs.writeFileSync(filePath, output);
 }
 
@@ -473,6 +509,8 @@ const taskPlannerStep = new Step({
     const query = context.triggerData.query;
     const response = await taskPlannerAgent.generate(query);
     consoleLogger.info(`✈️ Task plan generated: \n${response.text}`);
+    // Write the task plan to a file
+    writeOutputToFile(response.text, taskPlanFile);
     return response.text;
   }
 });
@@ -494,28 +532,26 @@ const extractWebsiteResearchStep = new Step({
 
 const createSearchListStep = new Step({
   id: 'Create-Search-List-Step',
-  outputSchema: z.object({
-    searchList: z.string().describe('Search list in markdown format'),
-    number: z.number().describe('Current research item number'),
-  }),
+  outputSchema: z.string().describe('Search list in markdown format'),
   execute: async ({ context }) => {
     consoleLogger.info('🏃🏻‍♀️ Executing Create Search List Step');
     const researchItems = context.getStepResult(extractWebsiteResearchStep);
-    const number = context.getStepResult<{ number: number }>('Create-Search-List-Step')?.number ?? 0;
-    let result = context.getStepResult<{ searchList: string }>('Create-Search-List-Step')?.searchList ?? 0;
-    const researchItem = researchItems[number];
-    if (!researchItem) {
-      throw new Error(`Research item with number ${number} not found`);
-    }
-    const { topic, description } = researchItem;
-    const query = `Research topic: ${topic}\nDescription: ${description}`;
-    const response = await searchListAgent.generate(query);
-    result += `${response.text}\n\n`;
-    consoleLogger.info('Search list generated:', response);
-    return {
-      searchList: result,
-      number: number + 1,
-    };
+
+    // Process research items in parallel batches (5 items at a time)
+    const batchSize = 3;
+    const searchResults = await processBatch(researchItems, batchSize, async (researchItem) => {
+      const { topic, description } = researchItem;
+      const query = `Research topic: ${topic}\nDescription: ${description}`;
+      const response = await searchListAgent.generate(query);
+      consoleLogger.info(`Search list generated for topic: ${topic}`);
+      return response.text;
+    });
+
+    // Combine all results
+    const result = searchResults.join('\n\n');
+    // Write the search list to a file
+    writeOutputToFile(result, 'search_list.md');
+    return result;
   }
 });
 
@@ -569,16 +605,41 @@ function pagesOutputParser(searchList: string): SearchPages[] {
   return searchPages;
 }
 
+// バッチ処理のためのユーティリティ関数
+async function processBatch<T, R>(
+  items: T[],
+  batchSize: number,
+  processor: (item: T) => Promise<R>
+): Promise<R[]> {
+  const results: R[] = [];
+
+  for (let i = 0; i < items.length; i += batchSize) {
+    const batch = items.slice(i, i + batchSize);
+    const batchResults = await Promise.all(batch.map(processor));
+    results.push(...batchResults);
+
+    // バッチ間に少し待機を入れる（APIレート制限対策）
+    if (i + batchSize < items.length) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+  }
+
+  return results;
+}
+
 const searchPagesStep = new Step({
   id: 'Search-Pages-Step',
   outputSchema: z.string().describe('Search pages in markdown format'),
   execute: async ({ context }) => {
     consoleLogger.info('🏃🏻‍♀️ Executing Search Pages Step');
     const searchList = context.getStepResult(createSearchListStep);
-    const searchPages = pagesOutputParser(searchList.searchList);
-    consoleLogger.info('Parsed search pages:', searchPages);
+    const searchPages = pagesOutputParser(searchList);
+    consoleLogger.info(`Parsed search pages: ${JSON.stringify(searchPages, null, 2)}`);
     let deepResearchResult = "";
-    for (const searchPage of searchPages) {
+
+    // Process search pages in batches for better performance and rate limiting
+    const searchPageBatchSize = 2; // Process 2 search pages at a time
+    const results = await processBatch(searchPages, searchPageBatchSize, async (searchPage) => {
       const { topic, description, query, links } = searchPage;
       let searchResult = `
 # Research Topic: ${topic}
@@ -588,18 +649,31 @@ ${description}
 ${query}
 ## Pages\n\n
       `;
-      for (const link of links) {
+
+      // バッチ処理で並列実行（一度に5件ずつ処理）
+      const batchSize = 3;
+      const summaries = await processBatch(links, batchSize, async (link) => {
         consoleLogger.info(`Reading page: ${link}`);
         const summary = await summaryAgent.generate(
           `Research topic: ${topic}\nDescription: ${description}\nPage URL: ${link}`
         );
         consoleLogger.info(`Page summary: ${summary.text}`);
-        searchResult += summary.text + "\n\n";
-      }
+        return summary.text;
+      });
+
+      // Add all summaries to the search result
+      searchResult += summaries.join('\n\n');
+
+      // Generate the topic summary
       const topicSummary = await summarizeTopicResultAgent.generate(searchResult);
       consoleLogger.info(`🧸 Topic summary: ${topicSummary.text}`);
-      deepResearchResult += topicSummary.text + "\n\n";
-    }
+      writeOutputToFile(topicSummary.text, topic.replace(/\s+/g, '_') + '.md');
+      return topicSummary.text;
+    });
+
+    // Combine all results
+    deepResearchResult = results.join('\n\n');
+    writeOutputToFile(deepResearchResult, 'deep_research_output.md');
     // Write the search pages to a file
     return deepResearchResult;
   }
@@ -610,28 +684,40 @@ const finalizeOutputStep = new Step({
   outputSchema: z.string().describe('Final output in markdown format'),
   execute: async ({ context }) => {
     consoleLogger.info('🏃🏻‍♀️ Executing Finalize Output Step');
-    const researchOutput = context.getStepResult(createSearchListStep);
     const searchPages = context.getStepResult(searchPagesStep);
-    const researchItems = context.getStepResult(extractWebsiteResearchStep);
     const taskPlan = context.getStepResult(taskPlannerStep);
 
     const finalizeAgent = new Agent({
       name: 'Finalize-Agent',
       instructions: `
-You are a research leader.
-Your task is to finalize the research output based on the research items and the search pages.
-You will receive the task plan, research items, and the search pages.
-You need to finalize the research output based on the research items and the search pages.
-Output should be in markdown format.
+### You are a research leader.  
+Your task is to **finalize the research output** based on the provided research tasks and collected web pages.  
+You will receive:  
+- The initial **task plan**  
+- A list of **research items** (subtopics)  
+- A collection of **search results/pages**  
+
+Your goal is to synthesize the findings and produce a **final, coherent research output** that thoroughly addresses each research item using the information gathered from the web pages.  
+
+The final output should:  
+- Be written in **Markdown format**  
+- Be organized clearly by research item  
+- Reference the original sources (with links) where applicable  
+- Emphasize clarity, depth, and thematic relevance  
+
+---
+
+**Note:** You should write in the user's preferred language, but you are free to incorporate findings from sources in any language.
 `,
       model: llm
     });
     const response = await finalizeAgent.generate(
       `## User query: \n${context.triggerData.query}\n\n` +
       `## Original Task plan:\n${taskPlan}\n\n` +
-      `## Summary of research items:\n${researchOutput}\n\n`
+      `## Summary of research items:\n${searchPages}\n\n`
     );
     const finalMarkdown = response.text;
+    writeOutputToFile(finalMarkdown, 'final_output.md');
     return finalMarkdown;
   },
 });
@@ -640,21 +726,6 @@ deepResearchWorkflow
   .step(taskPlannerStep)
   .then(extractWebsiteResearchStep)
   .then(createSearchListStep)
-  .until(async ({ context }) => {
-    const researchItems = context.getStepResult(extractWebsiteResearchStep);
-    const number = context.getStepResult<{ number: number }>('Create-Search-List-Step')?.number ?? 0;
-    consoleLogger.info('Current research item number:', {
-      number
-    });
-    if (number >= researchItems.length) {
-      consoleLogger.info('All research items processed');
-      const result = context.getStepResult<{ searchList: string }>('Create-Search-List-Step');
-      consoleLogger.info('Final search list:', result);
-      return true;
-    } else {
-      return false;
-    }
-  }, createSearchListStep)
   .then(searchPagesStep)
   .then(finalizeOutputStep).commit();
 

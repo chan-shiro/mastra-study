@@ -6,11 +6,9 @@ describe('extractWebsiteResearch', () => {
 # Website Research
 Some instructions for the research task overview.
 
-[ ] 1. Research Item One
-  - Description for item one
+[ ] 1. Research Item One - Description for item one
 
-[ ] 2. Research Item Two
-  - Description for item two with more details
+[ ] 2. Research Item Two - Description for item two with more details
 
 # Analyze the research output
 Some other section
@@ -21,13 +19,13 @@ Some other section
     expect(result).toHaveLength(2);
     expect(result[0]).toEqual({
       number: 1,
-      title: 'Research Item One',
-      description: 'Description for item one',
+      topic: 'Research Item One - Description for item one',
+      description: ""
     });
     expect(result[1]).toEqual({
       number: 2,
-      title: 'Research Item Two',
-      description: 'Description for item two with more details',
+      topic: 'Research Item Two - Description for item two with more details',
+      description: "",
     });
   });
 
@@ -55,21 +53,19 @@ Some other section
     expect(result).toEqual([]);
   });
 
-  it('should extract items with complex descriptions', () => {
+  it('should always "" for description', () => {
     const markdown = `
 # Website Research
-[ ] 1. Complex Item
-  - This description has multiple sentences. It also has some formatting *like this* and **like this**.
+[ ] 1. Complex Item - This description has multiple sentences. It also has some formatting *like this* and **like this**.
 
-[ ] 2. Another Item
-  - Description with [links](https://example.com) and other elements.
+[ ] 2. Another Item - Description with [links](https://example.com) and other elements.
 `;
 
     const result = extractWebsiteResearch(markdown);
     
     expect(result).toHaveLength(2);
-    expect(result[0].description).toBe('This description has multiple sentences. It also has some formatting *like this* and **like this**.');
-    expect(result[1].description).toBe('Description with [links](https://example.com) and other elements.');
+    expect(result[0].description).toBe("");
+    expect(result[1].description).toBe("");
   });
 });
 
