@@ -4,7 +4,7 @@ import { createTool } from '@mastra/core/tools';
 
 const SearchRequestSchema = z.object({
   query: z.string().describe('Search query'),
-  engine: z.enum(['google', 'yahoo', 'bing']).describe('Search engine to use').default('google'),
+  engine: z.enum(['google', 'yahoo', 'bing']).describe('Search engine to use'),
   location: z.string().optional().describe('Search executed in this location').default('Tokyo, Japan'),
   domain: z.string().optional().describe('Search engine domain').default('google.com'),
   country: z.string().optional().describe('Search country code').default('jp'),
@@ -71,7 +71,7 @@ const SourceSchema = z.object({
 });
 
 const KnowledgeGraphSchema = z.object({
-  title: z.string(),
+  title: z.string().optional(),
   entity_type: z.string().optional(),
   kgmid: z.string().optional(),
   knowledge_graph_search_link: z.string().url().optional(),
@@ -164,22 +164,32 @@ async function search(request: SearchRequest): Promise<SearchResponse> {
     country,
     language,
     num: numResults,
-    start: offset
+    start: offset,
+    api_key: process.env.SERPAPI_API_KEY,
   }) as Promise<SearchResponse>;
 }
 
 type OrganicResult = z.infer<typeof OrganicResultSchema>;
 
-async function GetOrganicResultsInText(request: SearchRequest): Promise<string> {
+const OrganicResultsSchema = z.array(z.object({
+  title: z.string(),
+  link: z.string().url(),
+  snippet: z.string().optional(),
+}));
+
+async function GetOrganicResultsInText(request: SearchRequest): Promise<{
+  title: string;
+  link: string;
+  snippet: string | undefined;
+}[]> {
   const response = await search(request);
   const parsedResponse = SearchResponseSchema.parse(response);
   const results = await extractOrganicResults(parsedResponse);
-  const formattedResults = results.map((result) => (
-    `## ${result.title}\n
-    - Url: ${result.link}\n
-    - Summary: ${result.snippet || 'No snippet available'}\n\n`
-  )).join('\n');
-  return formattedResults;
+  return results.map((result) => ({
+    title: result.title,
+    link: result.link,
+    snippet: result.snippet,
+  }));
 }
 
 async function extractOrganicResults(response: SearchResponse): Promise<OrganicResult[]> {
@@ -193,7 +203,7 @@ export const organicResultsTool = createTool({
   id: 'get-organic-search-results',
   description: 'Get organic search results from a search engine',
   inputSchema: SearchRequestSchema,
-  outputSchema: z.string(),
+  outputSchema: OrganicResultsSchema,
   execute: async ({ context }) => {
     const results = await GetOrganicResultsInText(context);
     return results;
