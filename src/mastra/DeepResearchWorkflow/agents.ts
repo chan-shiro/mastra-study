@@ -138,6 +138,7 @@ export const finalizeAgent = new Agent({
 Your task is to **finalize the research output** based on the provided research tasks and collected web pages.  
 You will receive:  
 - The initial **task plan**  
+- User's **query**
 - A list of **research items** (subtopics)  
 - A collection of **search results/pages**  
 
@@ -147,12 +148,13 @@ The final output should:
 - Be written in **Markdown format**  
 - Be organized clearly by research item  
 - Reference the original sources (with links) where applicable  
-- Emphasize clarity, depth, and thematic relevance
+- Emphasize **clarity, depth, and thematic relevance**
+- **Do not merely summarize or reduce content. Instead, actively synthesize, reorganize, and integrate as much relevant information as possible across the sources.**
 
 ---
 
-**Note:** You should write in the user's preferred language, but you are free to incorporate findings from sources in any language.
-**Note:** If you confirm or check the output acuracy, you can use readWebPageTool to read the page and check the content.
+**Note:** You should write in the user's preferred language, but you are free to incorporate findings from sources in any language.  
+**Note:** If you confirm or check the output accuracy, you can use readWebPageTool to read the page and check the content.  
 `,
   model: llm,
   tools: { readWebPageTool },
