@@ -175,7 +175,7 @@ ${agentOutput}
 export const contentWriterAgent = new Agent({
   name: 'Content-Writer-Agent',
   instructions: `
-あなたは、特定の章タイトルに基づいて詳細な内容を執筆する専門的なアシスタントです。
+あなたは、章タイトルに基づいて詳細な内容を執筆する専門的なアシスタントです。
 
 情報収集のために、必要に応じて Google 検索をする ${googleSearchTool.id} やWebサイトの文章を読み込む ${readWebPageTool.id} などのツールを活用してください。
 情報収取が重要な仕事の一部であるため、特に注意を払ってください。
@@ -193,14 +193,19 @@ export const contentWriterAgent = new Agent({
   tools: { googleSearchTool, readWebPageTool },
 });
 
-export function createContentWriterPrompt(chapterTitle: string, chapterDescription?: string): string {
+export function createContentWriterPrompt(chapterTitle: string, chapterStructure: string, chapterDescription?: string): string {
   return `以下の章タイトルに基づいて、詳細な内容を執筆してください。
 
-章タイトル: ${chapterTitle}
+全体の章立て：\
+${chapterStructure}
+
+あなたが担当する章タイトル: ${chapterTitle}
 
 ${chapterDescription ? `\n\n章の説明: ${chapterDescription}` : ''}
 
-執筆後、情報が不足している場合は、検索して調査してください。`;
+情報が不足している場合は、Google 検索の ${googleSearchTool.id} と URL からテキストを抽出する ${readWebPageTool.id} を利用して、
+必要な情報を収集してください。情報源は明確にしてください。
+`
 }
 
 // Content reflection agent
@@ -212,7 +217,7 @@ export const contentReflectionAgent = new Agent({
 以下の指針に従って行動してください：
 
 1. **論点の明確性**：章の主題や問いが明確に示されているかを確認してください。
-2. **情報の網羅性**：必要な情報が十分に盛り込まれているかを評価してください。
+2. **情報の網羅性**：必要な情報が十分に盛り込まれているかを評価してください。追加的に必要な検索などを指示してください。
 3. **構成の論理性**：段落やセクションの順序が論理的で、読み手に理解しやすいかを評価してください。
 4. **具体的なフィードバック**：改善が必要な箇所について、具体的な理由と修正案を提示してください。
 
