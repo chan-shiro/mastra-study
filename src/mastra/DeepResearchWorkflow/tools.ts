@@ -1,8 +1,13 @@
-import { z } from 'zod';
+import { createTool } from '@mastra/core';
 import { getJson } from 'serpapi';
-import { createTool } from '@mastra/core/tools';
+import { chromium } from 'playwright';
+import { JSDOM } from 'jsdom';
+import { Readability } from '@mozilla/readability';
+import { z } from 'zod';
+import { consoleLogger } from './utils';
 
-const SearchRequestSchema = z.object({
+// Search tool schemas
+export const SearchRequestSchema = z.object({
   query: z.string().describe('Search query'),
   engine: z.enum(['google', 'yahoo', 'bing']).describe('Search engine to use'),
   location: z.string().optional().describe('Search executed in this location').default('Tokyo, Japan'),
@@ -13,7 +18,7 @@ const SearchRequestSchema = z.object({
   offset: z.number().optional().describe('Offset for pagination').default(0)
 });
 
-type SearchRequest = z.infer<typeof SearchRequestSchema>;
+export type SearchRequest = z.infer<typeof SearchRequestSchema>;
 
 // Define schemas for nested objects first
 const SearchMetadataSchema = z.object({
@@ -91,7 +96,7 @@ const RelatedQuestionSchema = z.object({
   next_page_token: z.string().optional(),
   serpapi_link: z.string().url().optional(),
   date: z.string().optional(),
-  source_logo: z.string().url().optional()
+  source_logo: z.string().url().optional().nullable(),
 });
 
 const InlineSitelinkSchema = z.object({
@@ -137,7 +142,7 @@ const AIOverviewSchema = z.object({
 });
 
 // Main schema for the entire search response
-const SearchResponseSchema = z.object({
+export const SearchResponseSchema = z.object({
   search_metadata: SearchMetadataSchema,
   search_parameters: SearchParametersSchema,
   search_information: SearchInformationSchema,
@@ -152,9 +157,17 @@ const SearchResponseSchema = z.object({
 });
 
 // Type inference
-type SearchResponse = z.infer<typeof SearchResponseSchema>;
+export type SearchResponse = z.infer<typeof SearchResponseSchema>;
+export type OrganicResult = z.infer<typeof OrganicResultSchema>;
+
+export const OrganicResultsSchema = z.array(z.object({
+  title: z.string(),
+  link: z.string().url(),
+  snippet: z.string().optional(),
+}));
 
 async function search(request: SearchRequest): Promise<SearchResponse> {
+  consoleLogger.info(`Searching with query: ${request.query}`);
   const { query, engine, location, domain, country, language, numResults, offset } = request;
   return getJson({
     engine,
@@ -168,14 +181,6 @@ async function search(request: SearchRequest): Promise<SearchResponse> {
     api_key: process.env.SERPAPI_API_KEY,
   }) as Promise<SearchResponse>;
 }
-
-type OrganicResult = z.infer<typeof OrganicResultSchema>;
-
-const OrganicResultsSchema = z.array(z.object({
-  title: z.string(),
-  link: z.string().url(),
-  snippet: z.string().optional(),
-}));
 
 async function GetOrganicResultsInText(request: SearchRequest): Promise<{
   title: string;
@@ -199,6 +204,7 @@ async function extractOrganicResults(response: SearchResponse): Promise<OrganicR
   return response.organic_results;
 }
 
+// Tool definitions
 export const organicResultsTool = createTool({
   id: 'get-organic-search-results',
   description: 'Get organic search results from a search engine',
@@ -208,4 +214,72 @@ export const organicResultsTool = createTool({
     const results = await GetOrganicResultsInText(context);
     return results;
   }
+});
+
+export const readWebPageTool = createTool({
+  id: 'read-web-page',
+  description: 'Read a web page and extract its content',
+  inputSchema: z.object({
+    url: z.string().describe('URL of the web page to read'),
+  }),
+  outputSchema: z.object({
+    title: z.string().describe('Title of the web page'),
+    content: z.string().describe('Content of the web page'),
+    url: z.string().describe('URL of the web page'),
+  }),
+  execute: async ({ context }) => {
+    const { url } = context;
+    consoleLogger.info(`Reading web page: ${url}`);
+    // Chromium ブラウザをヘッドレスモードで起動
+    const browser = await chromium.launch({ headless: false });
+    const page = await browser.newPage();
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
+
+    const title = await page.title();
+    consoleLogger.info(`Page title: ${title}`);
+    const html = await page.content();
+    const dom = new JSDOM(html, { url });
+    const reader = new Readability(dom.window.document);
+    let content = "";
+    try {
+      const article = reader.parse();
+      if (article && article.title && article.textContent) {
+        content = article.textContent!;
+      }
+    } catch (error) {
+      let err = error as any;
+      consoleLogger.error(`Error parsing article: ${err.message ? err.message : JSON.stringify(err)}`);
+      // コンテンツと関係なさそうなタグを削除（例：head, script, iframe）
+      await page.evaluate(() => {
+        const selectorsToRemove = ['head', 'script', 'iframe'];
+        selectorsToRemove.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(element => element.remove());
+        });
+      });
+      // 抽出対象のコンテンツを持つセレクタのリスト（必要に応じて調整してください）
+      const selectors = ['main', 'article', '#content', '.content'];
+
+      // セレクタ順に要素を探し、最初に見つかった要素の innerHTML を取得する
+      content = await page.evaluate((selectors) => {
+        for (const selector of selectors) {
+          const el = document.querySelector(selector);
+          if (el) {
+            return el.innerHTML;
+          }
+        }
+        // どれも見つからなかった場合は、ページ全体の TEXT を返す
+        return document.body.innerText;
+      }, selectors);
+    }
+
+    // ブラウザを終了
+    await browser.close();
+
+    return {
+      title,
+      content,
+      url,
+    }
+  },
 });
