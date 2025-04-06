@@ -27,9 +27,9 @@ const SearchMetadataSchema = z.object({
   json_endpoint: z.string().url(),
   created_at: z.string(),
   processed_at: z.string(),
-  google_url: z.string().url(),
+  google_url: z.string().url().optional(),
   raw_html_file: z.string().url().optional(),
-  total_time_taken: z.number()
+  total_time_taken: z.number().optional(),
 });
 
 const SearchParametersSchema = z.object({
@@ -87,15 +87,15 @@ const KnowledgeGraphSchema = z.object({
 });
 
 const RelatedQuestionSchema = z.object({
-  question: z.string(),
-  snippet: z.string().nullable(),
+  question: z.string().optional().nullable(),
+  snippet: z.string().nullable().optional(),
   title: z.string().optional(),
   link: z.string().url().optional(),
   list: z.array(z.string()).optional(),
   displayed_link: z.string().nullable(),
   next_page_token: z.string().optional(),
   serpapi_link: z.string().url().optional(),
-  date: z.string().optional(),
+  date: z.string().optional().nullable(),
   source_logo: z.string().url().optional().nullable(),
 });
 
@@ -118,9 +118,9 @@ const OrganicResultSchema = z.object({
 
 const RelatedSearchSchema = z.object({
   block_position: z.number().optional(),
-  query: z.string().optional(), // オプショナルに変更
-  link: z.string().url().optional(), // オプショナルに変更
-  serpapi_link: z.string().url().optional() // オプショナルに変更
+  query: z.string().optional(), 
+  link: z.string().url().optional(),
+  serpapi_link: z.string().url().optional()
 });
 
 const PaginationSchema = z.object({

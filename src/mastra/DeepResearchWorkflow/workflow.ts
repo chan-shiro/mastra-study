@@ -48,7 +48,7 @@ const extractWebsiteResearchStep = new Step({
     // Add the research items to the context for later use
     context.inputData.researchItems = researchItems;
     context.inputData.searchList = "";
-    consoleLogger.info(`Extracted research items: \n${researchItems}`);
+    consoleLogger.info(`Extracted research items: \n${JSON.stringify(researchItems, null, 2)}`);
     return researchItems;
   }
 });
@@ -118,7 +118,7 @@ ${query}
       // Generate the topic summary
       const topicSummary = await summarizeTopicResultAgent.generate(searchResult);
       consoleLogger.info(`🧸 Topic summary: ${topicSummary.text}`);
-      addOutputToFile(topicSummary.text, topic.replace(/\\s+/g, '_') + '.md');
+      addOutputToFile(topicSummary.text, topic.replace(/\\s+/g, '_').substring(0, 10) + '.md');
       return topicSummary.text;
     });
 

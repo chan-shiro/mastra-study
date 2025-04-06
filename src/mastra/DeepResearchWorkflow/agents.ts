@@ -1,16 +1,21 @@
 import { Agent } from '@mastra/core/agent';
 import { openai } from '@ai-sdk/openai';
 import { google } from '@ai-sdk/google';
+import { anthropic } from '@ai-sdk/anthropic';
 import { organicResultsTool, readWebPageTool } from './tools';
 
-const llm = openai('gpt-4o');
-// const llm = google('gemini-2.0-flash')
+// const llm = openai('gpt-4o');
+// const llm = google('gemini-2.0-flash-001');
+const llm = anthropic('claude-3-5-sonnet-latest');
 
 export const taskPlannerAgent = new Agent({
   name: 'Task-Planner-Agent',
   instructions: `
 You are a leading researcher.
 Your task is to create a detailed research plan based on the user's query.
+
+You are expected to generate outputs in the user's language. However, research should not be limited to sources in the user's language.**  
+A shallow preliminary web search may be conducted to support better planning by calling the ${organicResultsTool.id} tool.
 
 Output should be in markdown format.
 Your output should be in the following format:
@@ -33,9 +38,6 @@ Your output should be in the following format:
 
 # Write a report  
   Write a comprehensive report based on the research findings. If the data includes comparable information, present it in a table format for clarity. The report should be written in Markdown format for ease of formatting and readability.  
-
-**Note: You are expected to generate outputs in the user's language. However, research should not be limited to sources in the user's language.**  
-**Note: A shallow preliminary web search may be conducted to support better planning.** 
   `,
   model: llm,
   tools: { organicResultsTool },
@@ -52,6 +54,12 @@ You will receive a research topic and are required to identify and evaluate 20 u
 Use comprehensive and in-depth web searches to locate high-quality sources such as academic articles, whitepapers, official websites, industry publications, and credible news outlets.  
 Critically assess each page to ensure it provides valuable insights for the research topic.  
 
+---
+
+**Note: You are expected to write in the user's language. However, research sources should not be limited to that language.**  
+**Note: Conducting broad and in-depth web searches is encouraged to ensure comprehensive coverage.**
+
+---
 Your output should follow the format below:
 
 ---
@@ -72,10 +80,6 @@ Provide a detailed overview of your research process and how each page contribut
 - [ ] [Title 4 with hyperlink]  
 ...  up to 5 queries
 
----
-
-**Note: You are expected to write in the user's language. However, research sources should not be limited to that language.**  
-**Note: Conducting broad and in-depth web searches is encouraged to ensure comprehensive coverage.**
 `,
   tools: { organicResultsTool },
   model: llm,
