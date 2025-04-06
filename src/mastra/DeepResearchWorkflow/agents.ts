@@ -4,9 +4,9 @@ import { google } from '@ai-sdk/google';
 import { anthropic } from '@ai-sdk/anthropic';
 import { organicResultsTool, readWebPageTool } from './tools';
 
-// const llm = openai('gpt-4o');
+const llm = openai('gpt-4o');
 // const llm = google('gemini-2.0-flash-001');
-const llm = anthropic('claude-3-5-sonnet-latest');
+// const llm = anthropic('claude-3-5-sonnet-latest');
 
 export const taskPlannerAgent = new Agent({
   name: 'Task-Planner-Agent',
