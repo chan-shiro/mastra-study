@@ -118,9 +118,9 @@ const OrganicResultSchema = z.object({
 
 const RelatedSearchSchema = z.object({
   block_position: z.number().optional(),
-  query: z.string(),
-  link: z.string().url(),
-  serpapi_link: z.string().url()
+  query: z.string().optional(), // オプショナルに変更
+  link: z.string().url().optional(), // オプショナルに変更
+  serpapi_link: z.string().url().optional() // オプショナルに変更
 });
 
 const PaginationSchema = z.object({

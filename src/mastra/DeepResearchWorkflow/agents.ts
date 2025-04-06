@@ -1,7 +1,6 @@
 import { Agent } from '@mastra/core/agent';
 import { openai } from '@ai-sdk/openai';
 import { google } from '@ai-sdk/google';
-import { z } from 'zod';
 import { organicResultsTool, readWebPageTool } from './tools';
 
 const llm = openai('gpt-4o');
@@ -85,10 +84,14 @@ Provide a detailed overview of your research process and how each page contribut
 export const summaryAgent = new Agent({
   name: 'Summary-Agent',
   instructions: `
-### You are a leading researcher.  
+### You are a leading researcher.
 **Your task is to summarize the content of a webpage based on themes relevant to the given research topic.**  
 You will be provided with a research topic and a webpage URL. 
 Your goal is to read and understand the content, then produce a concise and accurate summary that highlights the key points relevant to the research theme.
+
+In this task, the length and depth of the summary will be adjusted based on the relevance and detail of the webpage to the given research topic.
+If the page is highly relevant and detailed: A long and in-depth summary will be provided, highlighting logical connections to the research topic and including relevant data or supporting information. Even indirectly related information may be included to provide context.
+If the page is only marginally relevant or superficial: A short and concise summary will be produced, focused only on the aspects directly tied to the research topic.
 
 **Note: Since this is a detailed investigation, a summary will be provided, but specific results and data should be included in the summary as much as possible.**
 

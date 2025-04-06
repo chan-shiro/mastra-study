@@ -1,10 +1,7 @@
 import { Workflow, Step } from '@mastra/core/workflows';
 import { z } from 'zod';
-import { Agent } from '@mastra/core/agent';
-import { openai } from '@ai-sdk/openai';
 
 import { taskPlannerAgent, searchListAgent, summaryAgent, summarizeTopicResultAgent, finalizeAgent } from './agents';
-import { readWebPageTool } from './tools';
 import { 
   consoleLogger, 
   ResearchItemSchema, 
