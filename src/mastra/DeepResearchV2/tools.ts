@@ -257,97 +257,104 @@ export const readWebPageTool = createTool({
   }),
   execute: async ({ context }) => {
     const { url } = context;
-    consoleLogger.info(`Reading web page: ${url}`);
-    const browser = await chromium.launch({ headless: false });
-    const page = await browser.newPage();
-    const response = await page.goto(url, { waitUntil: "domcontentloaded" });
-    if (!response) {
-      throw new Error(`Failed to load page: ${url}`);
-    }
-    const contentType = response.headers()["content-type"];
-    let title = "";
-    let content = "";
-    if (contentType.includes("text/html")) {
-      title = await page.title();
-      consoleLogger.info(`Page title: ${title}`);
-      const html = await page.content();
-      const dom = new JSDOM(html, { url });
-      const reader = new Readability(dom.window.document);
+    try {
+      consoleLogger.info(`Reading web page: ${url}`);
+      const browser = await chromium.launch({ headless: false });
+      const page = await browser.newPage();
+      const response = await page.goto(url, { waitUntil: "domcontentloaded" });
+      if (!response) {
+        throw new Error(`Failed to load page: ${url}`);
+      }
+      const contentType = response.headers()["content-type"];
+      let title = "";
       let content = "";
+      if (contentType.includes("text/html")) {
+        title = await page.title();
+        consoleLogger.info(`Page title: ${title}`);
+        const html = await page.content();
+        const dom = new JSDOM(html, { url });
+        const reader = new Readability(dom.window.document);
+        let content = "";
 
-      try {
-        const article = reader.parse();
-        if (article && article.title && article.textContent) {
-          content = article.textContent!;
-        }
-      } catch (error) {
-        let err = error as any;
-        consoleLogger.error(
-          `Error parsing article: ${err.message ? err.message : JSON.stringify(err)}`
-        );
-        // コンテンツと関係なさそうなタグを削除（例：head, script, iframe）
-        await page.evaluate(() => {
-          const selectorsToRemove = [
-            "head",
-            "script",
-            "iframe",
-            "style",
-            "meta",
-            "link",
-          ];
-          selectorsToRemove.forEach((selector) => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach((element) => element.remove());
-          });
-        });
-        // 抽出対象のコンテンツを持つセレクタのリスト（必要に応じて調整してください）
-        const selectors = ["main", "article", "#content", ".content"];
-
-        // セレクタ順に要素を探し、最初に見つかった要素の innerHTML を取得する
-        content = await page.evaluate((selectors) => {
-          for (const selector of selectors) {
-            const el = document.querySelector(selector);
-            if (el) {
-              return el.innerHTML;
-            }
+        try {
+          const article = reader.parse();
+          if (article && article.title && article.textContent) {
+            content = article.textContent!;
           }
-          // どれも見つからなかった場合は、ページ全体の TEXT を返す
-          return document.body.innerText;
-        }, selectors);
-      }
-    } else if (contentType.includes("application/pdf")) {
-      // PDFコンテンツの処理
-      try {
-        const pdfBuffer = await response.body();
-        const pdfMetadata = await extractTextFromPDF(pdfBuffer);
-        content = pdfMetadata.text;
-        title = pdfMetadata.title;
-      } catch (error) {
-        let err = error as any;
-        consoleLogger.error(
-          `Error extracting text from PDF: ${err.message ? err.message : JSON.stringify(err)}`
+        } catch (error) {
+          let err = error as any;
+          consoleLogger.error(
+            `Error parsing article: ${err.message ? err.message.substring(0, 128) : JSON.stringify(err).substring(0, 128)}`
+          );
+          // コンテンツと関係なさそうなタグを削除（例：head, script, iframe）
+          await page.evaluate(() => {
+            const selectorsToRemove = [
+              "head",
+              "script",
+              "iframe",
+              "style",
+              "meta",
+              "link",
+            ];
+            selectorsToRemove.forEach((selector) => {
+              const elements = document.querySelectorAll(selector);
+              elements.forEach((element) => element.remove());
+            });
+          });
+          // 抽出対象のコンテンツを持つセレクタのリスト（必要に応じて調整してください）
+          const selectors = ["main", "article", "#content", ".content"];
+
+          // セレクタ順に要素を探し、最初に見つかった要素の innerHTML を取得する
+          content = await page.evaluate((selectors) => {
+            for (const selector of selectors) {
+              const el = document.querySelector(selector);
+              if (el) {
+                return el.innerHTML;
+              }
+            }
+            // どれも見つからなかった場合は、ページ全体の TEXT を返す
+            return document.body.innerText;
+          }, selectors);
+        }
+      } else if (contentType.includes("application/pdf")) {
+        // PDFコンテンツの処理
+        try {
+          const pdfBuffer = await response.body();
+          const pdfMetadata = await extractTextFromPDF(pdfBuffer);
+          content = pdfMetadata.text;
+          title = pdfMetadata.title;
+        } catch (error) {
+          let err = error as any;
+          consoleLogger.error(
+            `Error extracting text from PDF: ${err.message ? err.message : JSON.stringify(err)}`
+          );
+          title = "PDF Document - Error Extracting Title";
+          content = "Error extracting text from PDF.";
+        }
+      } else if (contentType.includes("text/plain")) {
+        // プレーンテキストコンテンツの処理
+        content = await response.text();
+        title = "Plain Text Document";
+      } else {
+        consoleLogger.warn(
+          `Unsupported content type: ${contentType}. Only HTML, PDF, and plain text are supported.`
         );
-        title = "PDF Document - Error Extracting Title";
-        content = "Error extracting text from PDF.";
       }
-    } else if (contentType.includes("text/plain")) {
-      // プレーンテキストコンテンツの処理
-      content = await response.text();
-      title = "Plain Text Document";
-    } else {
-      consoleLogger.warn(
-        `Unsupported content type: ${contentType}. Only HTML, PDF, and plain text are supported.`
-      );
+
+      // ブラウザを終了
+      await browser.close();
+      return {
+        title,
+        content,
+        url,
+      };
+    } catch (error) {
+      return {
+        title: "Error",
+        content: `Error reading web page: ${(error as any).message}`,
+        url,
+      };
     }
-
-    // ブラウザを終了
-    await browser.close();
-
-    return {
-      title,
-      content,
-      url,
-    };
   },
 });
 
@@ -364,14 +371,16 @@ async function extractTextFromPDF(data: Buffer<ArrayBufferLike>): Promise<{
 
   for (let pageNumber = 1; pageNumber <= maxPages; pageNumber++) {
     const page = await pdf.getPage(pageNumber);
-    const content = await page.getTextContent({ 
-      includeMarkedContent: false 
+    const content = await page.getTextContent({
+      includeMarkedContent: false,
     });
-    const pageText = content.items.map((item) => ("str" in item ? item.str : "")).join("\n");
+    const pageText = content.items
+      .map((item) => ("str" in item ? item.str : ""))
+      .join("\n");
     pdfText += pageText + "\n";
   }
   return {
     title: (metaData.info as any).title || "PDF Document",
-    text: pdfText
-  }
+    text: pdfText,
+  };
 }

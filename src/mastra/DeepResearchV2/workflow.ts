@@ -15,6 +15,8 @@ import {
   finalReportWriterAgent,
   finalReportReflectionAgent,
   createFinalReportWriterPrompt,
+  createContentReflectionPrompt,
+  createFinalReportReflectionPrompt,
 } from "./agents";
 import {
   addOutputToFile,
@@ -22,9 +24,6 @@ import {
   extractCodeBlockContent,
   writeOutputToFile,
 } from "./utils";
-import { write } from "fs";
-import { google } from "@ai-sdk/google";
-import { googleSearchTool } from "./tools";
 
 // Step 1: Outline
 const outlineStep = new Step({
@@ -94,7 +93,8 @@ const outlineStep = new Step({
             `\n\n==== revision reason ${count + 1} ====\n\n${reason}`,
             "outline.md"
           );
-          const newQuery = createFeedbackPrompt(result, feedbackResponse.text);
+          const userQuery = context.inputData.query;
+          const newQuery = createFeedbackPrompt(userQuery, result, feedbackResponse.text);
           query = newQuery;
         }
         result = response.text;
@@ -182,7 +182,9 @@ const contentDevelopmentStep = new Step({
       let result = "";
 
       // Content revision loop
+      let chapterStructure = context.getStepResult(outlineStep)
       let prompt = createContentWriterPrompt(
+        chapterStructure,
         chapter.title,
         chapter.description
       );
@@ -191,7 +193,7 @@ const contentDevelopmentStep = new Step({
           prompt,
           {
             temperature: 0.5,
-            frequencyPenalty: 0.5,
+            frequencyPenalty: 0.5
           },
         );
         consoleLogger.info(
@@ -203,8 +205,10 @@ const contentDevelopmentStep = new Step({
           "content.md"
         );
         // Get feedback from the reflection agent
-        const feedbackPrompt = createFeedbackPrompt(
-          "content-development",
+        const userQuery = context.inputData.query;
+        const feedbackPrompt = createContentReflectionPrompt(
+          chapterStructure,
+          chapter.title,
           response.text
         );
         const feedbackResponse =
@@ -240,7 +244,9 @@ const contentDevelopmentStep = new Step({
               `\n\n==== Chapter ${chapter.number}:  revision reason ${count + 1} ====\n\n${reason}`,
               "content.md"
             );
+            const userQuery = context.inputData.query;
             const newPrompt = createFeedbackPrompt(
+              userQuery,
               response.text,
               feedbackResponse.text
             );
@@ -309,8 +315,7 @@ const finalReportStep = new Step({
         "final_report.md"
       );
       // Get feedback from the reflection agent
-      const feedbackPrompt = createFeedbackPrompt(
-        "final-report",
+      const feedbackPrompt = createFinalReportReflectionPrompt(
         response.text
       );
       const feedbackResponse =
@@ -345,7 +350,9 @@ const finalReportStep = new Step({
             `\n\n==== Trial ${count + 1} final report revision reason ====\n\n${reason}`,
             "final_report.md"
           );
+          const userQuery = context.inputData.query;
           const newPrompt = createFeedbackPrompt(
+            userQuery,
             response.text,
             feedbackResponse.text
           );
