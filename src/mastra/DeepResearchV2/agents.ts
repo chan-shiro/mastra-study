@@ -6,6 +6,7 @@ import { googleSearchTool, readWebPageTool } from './tools';
 
 // Select the LLM provider you want to use
 const llm = openai('gpt-4o');
+
 // const llm = google('gemini-2.0-flash-001');
 // const llm = anthropic('claude-3-5-sonnet-latest');
 
@@ -94,6 +95,7 @@ export const chapterParserAgent = new Agent({
 2. **章タイトルの抽出**：各章のタイトルを明確に抽出してください。
 3. **章説明**：各章の説明を抽出してください。
 4. **出力形式**：解析結果はJSON形式で、以下の形式で返答してください。
+5. **はじめにとまとめ**：はじめにとまとめは、別のエージェントが作成するため、解析対象から除外してください。
 
 \`\`\`json
 {
@@ -178,6 +180,7 @@ export const contentWriterAgent = new Agent({
 あなたは、章タイトルに基づいて詳細な内容を執筆する専門的なアシスタントです。
 
 情報収集のために、必要に応じて Google 検索をする ${googleSearchTool.id} やWebサイトの文章を読み込む ${readWebPageTool.id} などのツールを活用してください。
+専門的な内容を扱うときは、axiv、pubmed、researchgateなどの信頼性の高い情報源を優先してください。その際、google サイト内検索のクエリを利用してください。
 情報収取が重要な仕事の一部であるため、特に注意を払ってください。
 
 以下の指針に従って行動してください：
@@ -185,7 +188,7 @@ export const contentWriterAgent = new Agent({
 1. 最新の情報を収集し、信頼性の高い情報源からデータを取得してください。
 2. 情報収集は、${googleSearchTool.id} だけでなく、 ${readWebPageTool.id} を使用してページの内容を読み取ることを積極に行うこと。
 3. 各段落のトピックセンテンスを明確にし、章の主題に関連する情報を提供してください。
-4. 引用した情報源を明確にし、信頼性を高めてください。URLや著者名、出版年などを記載してください。
+4. 引用した情報源を明確にし、信頼性を高めてください。URL、著者名、出版年などを記載してください。特にURLは必須です。
 
 これらの指針を遵守し、高品質な章の執筆を行ってください。
   `,
@@ -203,8 +206,8 @@ ${chapterStructure}
 
 ${chapterDescription ? `\n\n章の説明: ${chapterDescription}` : ''}
 
-情報が不足している場合は、Google 検索の ${googleSearchTool.id} と URL からテキストを抽出する ${readWebPageTool.id} を利用して、
-必要な情報を収集してください。情報源は明確にしてください。
+Google 検索の ${googleSearchTool.id} と URL からテキストを抽出する ${readWebPageTool.id} を利用して、
+必要な情報をできるだけ多く収集してください。情報源は明確にしてください。
 `
 }
 
@@ -213,7 +216,6 @@ export const contentReflectionAgent = new Agent({
   name: 'Content-Reflection-Agent',
   instructions: `
 あなたは、アシスタントが作成した章の内容を評価し、改善点を指摘する専門的なレビュアーです。
-「はじめに」や「まとめ」の章は、最終的に仕上げる際に追加されるため、差し戻す必要はありません。
 以下の指針に従って行動してください：
 
 1. **論点の明確性**：章の主題や問いが明確に示されているかを確認してください。
@@ -229,7 +231,6 @@ export const contentReflectionAgent = new Agent({
 
 export function createContentReflectionPrompt(chapterTitle: string, content: string): string {
   return `以下は、アシスタントが作成した章の内容です。
-この文章の評価と改善点の指摘をお願いします。「はじめに」や「まとめ」の章は、最終的に仕上げる際に追加されるため、差し戻す必要はありません。
 
 章タイトル：${chapterTitle}
 
@@ -238,12 +239,6 @@ export function createContentReflectionPrompt(chapterTitle: string, content: str
 ${content}
 
 ===【内容終わり】===
-
-評価の際には、以下の観点を考慮してください：
-
-1. **網羅性**：テーマの主要な側面が十分にカバーされているか。
-2. **論理的な一貫性**：章の順序や構成が論理的で、理解しやすいか。
-3. **冗長性**：重複する内容や不要な章が含まれていないか。
 
 各観点についての評価と、必要に応じて具体的な改善提案をお願いします。`;
 }
@@ -256,12 +251,16 @@ ${content}
 export const finalReportWriterAgent = new Agent({
   name: 'Final-Report-Writer-Agent',
   instructions: `
-あなたは、調査レポートの全体構成を整え、最終的な仕上げを行う専門的なアシスタントです。以下の指針に従って行動してください：
+あなたは、調査レポートの全体構成を整え、最終的な仕上げを行う専門的なアシスタントです。
+ゴールは、完全なレポートを作成することです。
+
+以下の指針に従って行動してください：
 
 1. **一貫性の確保**：全体のトーンやスタイルが統一されているかを確認し、必要に応じて修正してください。
-2. **「はじめに」と「まとめ」の作成**：読者に背景や目的を伝える「はじめに」と、主要なポイントを再確認する「まとめ」を追加してください。
+2. **「はじめに」と「まとめ」の追加**：読者に背景や目的を伝え、引き込まれるような「はじめに」と、主要なポイントを再確認する「まとめ」を追加してください。
 3. **セクション間の流れ**：各章やセクションがスムーズにつながり、論理的な流れが維持されているかを検証してください。
 4. **最終的な校正**：文法やスペルミス、表記の揺れなどをチェックし、プロフェッショナルな仕上がりを目指してください。
+5. **引用と参考文献の整理**：使用した情報源や文献を整理し、適切な形式で引用してください。リンクは必ず明記してください。
 
 これらの指針を遵守し、高品質な最終レポートを作成してください。
   `,
@@ -273,17 +272,7 @@ export function createFinalReportWriterPrompt(reportDraft: string): string {
 
 【レポートのドラフト】:
 ${reportDraft}
-
-作業内容：
-
-1. 全体のトーンやスタイルが統一されているかを確認し、必要に応じて修正してください。
-2. 読者に背景や目的を伝える「はじめに」を追加してください。
-3. 主要なポイントを再確認し、読者に明確な結論を提供する「まとめ」を追加してください。
-4. 各章やセクションがスムーズにつながり、論理的な流れが維持されているかを検証してください。
-5. 文法やスペルミス、表記の揺れなどをチェックし、プロフェッショナルな仕上がりにしてください。
-
-これらの作業を行い、最終的なレポートを完成させてください。`;
-}
+`}
 
 // Final report reflection agent
 export const finalReportReflectionAgent = new Agent({
@@ -308,15 +297,7 @@ export function createFinalReportReflectionPrompt(finalReport: string): string {
 
 【最終レポート】:
 ${finalReport}
-
-評価の際には、以下の観点を考慮してください：
-
-1. 全体のトーンやスタイルが統一されているか。
-2. 各章やセクションが論理的な順序で配置され、スムーズな流れになっているか。
-3. 「はじめに」が背景や目的を明確に伝えているか、「まとめ」が主要なポイントを効果的に再確認しているか。
-4. 文法やスペルミス、表記の揺れなどがないか。
-
-各観点についての評価と、必要に応じて具体的な改善提案をお願いします。`;
+`;
 }
 
 export function createFeedbackPrompt(

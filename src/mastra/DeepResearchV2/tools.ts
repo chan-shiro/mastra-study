@@ -5,7 +5,7 @@ import { JSDOM } from "jsdom";
 import { Readability } from "@mozilla/readability";
 import { z } from "zod";
 import { consoleLogger } from "./utils";
-// import * as pdfjsLib from "pdfjs-dist";
+import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf.mjs";
 
 // Search tool schemas
 export const SearchRequestSchema = z.object({
@@ -317,10 +317,19 @@ export const readWebPageTool = createTool({
       }
     } else if (contentType.includes("application/pdf")) {
       // PDFコンテンツの処理
-      // const pdfBuffer = await response.body();
-      // const pdfMetadata = await extractTextFromPDF(pdfBuffer);
-      // content = pdfMetadata.text;
-      // title = pdfMetadata.title;
+      try {
+        const pdfBuffer = await response.body();
+        const pdfMetadata = await extractTextFromPDF(pdfBuffer);
+        content = pdfMetadata.text;
+        title = pdfMetadata.title;
+      } catch (error) {
+        let err = error as any;
+        consoleLogger.error(
+          `Error extracting text from PDF: ${err.message ? err.message : JSON.stringify(err)}`
+        );
+        title = "PDF Document - Error Extracting Title";
+        content = "Error extracting text from PDF.";
+      }
     } else if (contentType.includes("text/plain")) {
       // プレーンテキストコンテンツの処理
       content = await response.text();
@@ -342,27 +351,27 @@ export const readWebPageTool = createTool({
   },
 });
 
-// async function extractTextFromPDF(data: Buffer<ArrayBufferLike>): Promise<{
-//   title: string;
-//   text: string;
-// }> {
-//   const loadingTask = pdfjsLib.getDocument({ data: data });
-//   const pdf = await loadingTask.promise;
-//   const metaData = await pdf.getMetadata();
-//   consoleLogger.info(`PDF Metadata: ${JSON.stringify(metaData)}`);
-//   const maxPages = pdf.numPages;
-//   let pdfText = "";
+async function extractTextFromPDF(data: Buffer<ArrayBufferLike>): Promise<{
+  title: string;
+  text: string;
+}> {
+  const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(data) });
+  const pdf = await loadingTask.promise;
+  const metaData = await pdf.getMetadata();
+  consoleLogger.info(`PDF Metadata: ${JSON.stringify(metaData)}`);
+  const maxPages = pdf.numPages;
+  let pdfText = "";
 
-//   for (let pageNumber = 1; pageNumber <= maxPages; pageNumber++) {
-//     const page = await pdf.getPage(pageNumber);
-//     const content = await page.getTextContent({ 
-//       includeMarkedContent: false 
-//     });
-//     const pageText = content.items.map((item) => ("str" in item ? item.str : "")).join("\n");
-//     pdfText += pageText + "\n";
-//   }
-//   return {
-//     title: (metaData.info as any).title || "PDF Document",
-//     text: pdfText
-//   }
-// }
+  for (let pageNumber = 1; pageNumber <= maxPages; pageNumber++) {
+    const page = await pdf.getPage(pageNumber);
+    const content = await page.getTextContent({ 
+      includeMarkedContent: false 
+    });
+    const pageText = content.items.map((item) => ("str" in item ? item.str : "")).join("\n");
+    pdfText += pageText + "\n";
+  }
+  return {
+    title: (metaData.info as any).title || "PDF Document",
+    text: pdfText
+  }
+}

@@ -23,6 +23,8 @@ import {
   writeOutputToFile,
 } from "./utils";
 import { write } from "fs";
+import { google } from "@ai-sdk/google";
+import { googleSearchTool } from "./tools";
 
 // Step 1: Outline
 const outlineStep = new Step({
@@ -185,7 +187,13 @@ const contentDevelopmentStep = new Step({
         chapter.description
       );
       while (count < maxRetries && judge === "revise") {
-        const response = await contentWriterAgent.generate(prompt);
+        const response = await contentWriterAgent.generate(
+          prompt,
+          {
+            temperature: 0.5,
+            frequencyPenalty: 0.5,
+          },
+        );
         consoleLogger.info(
           `✈️ Content generated (${count + 1}): \n${response.text}`
         );
