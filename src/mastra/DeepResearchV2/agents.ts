@@ -5,7 +5,7 @@ import { anthropic } from '@ai-sdk/anthropic';
 import { googleSearchTool, readWebPageTool } from './tools';
 
 // Select the LLM provider you want to use
-const llm = openai('gpt-4o');
+const llm = openai('gpt-4o-mini');
 
 // const llm = google('gemini-2.0-flash-001');
 // const llm = anthropic('claude-3-5-sonnet-latest');
@@ -129,7 +129,7 @@ export const phaseJudgeAgent = new Agent({
    フィードバックが「十分」「良好」「大きな問題なし」としている場合は、次のフェーズに進めてください。
 
 3. **慎重さを優先する**：
-   判断が微妙な場合は差し戻しを優先し、品質重視のスタンスをとってください。
+   改善点が明確で差し戻しにより品質改善効果が期待できそうであれば、品質重視のスタンスをとってください。改善点があってもこれ以上の改善が見込めない場合は、前進させてください。
 
 4. **出力形式はJSONで**：
    判定はJSON形式で、以下の形式で返答してください。

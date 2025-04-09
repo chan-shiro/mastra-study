@@ -18,6 +18,7 @@
     "@mastra/core": "^0.7.0",
     "@mozilla/readability": "^0.6.0",
     "jsdom": "^26.0.0",
+    "langfuse-vercel": "^3.37.1",
     "mastra": "^0.4.4",
     "pdfjs-dist": "^5.1.91",
     "playwright": "^1.51.1",

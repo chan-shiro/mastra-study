@@ -67,14 +67,14 @@ const SearchInformationSchema = z.object({
 });
 
 const SitelinkSchema = z.object({
-  title: z.string(),
-  link: z.string().url(),
+  title: z.string().optional(),
+  link: z.string().url().optional(),
 });
 
 const AdSchema = z.object({
-  position: z.number(),
+  position: z.number().optional(),
   block_position: z.string().optional(),
-  title: z.string(),
+  title: z.string().optional(),
   link: z.string().url(),
   displayed_link: z.string().optional(),
   tracking_link: z.string().url().optional(),
