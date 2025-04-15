@@ -1,5 +1,5 @@
-import { Mastra } from '@mastra/core/mastra';
-import { LangfuseExporter } from 'langfuse-vercel';
+import { Mastra } from "@mastra/core/mastra";
+import { LangfuseExporter } from "langfuse-vercel";
 
 import {
   outlineWriterAgent,
@@ -11,29 +11,31 @@ import {
   finalReportWriterAgent,
   finalReportReflectionAgent,
   deepResearchV2Workflow,
-} from './DeepResearchV2';
+} from "./DeepResearchV2";
 
 // Import from the DeepResearchWorkflow directory
-import { 
-  deepResearchWorkflow,
-  consoleLogger,
-} from './DeepResearchWorkflow';
-
+import { deepResearchWorkflow, consoleLogger } from "./DeepResearchWorkflow";
+import { serviceAgent } from "./DeepResearchV2/agents";
 
 // Create and export the Mastra instance
 export const mastra = new Mastra({
   workflows: { deepResearchWorkflow, deepResearchV2Workflow },
-  agents: { 
+  agents: {
     // V1 agents
     // taskPlannerAgent, searchListAgent, summaryAgent,
     // V2 agents
-    outlineWriterAgent, outlineReflectionAgent,
-    phaseJudgeAgent, contentWriterAgent, contentReflectionAgent,
-    finalReportWriterAgent, finalReportReflectionAgent,
+    outlineWriterAgent,
+    outlineReflectionAgent,
+    phaseJudgeAgent,
+    contentWriterAgent,
+    contentReflectionAgent,
+    finalReportWriterAgent,
+    finalReportReflectionAgent,
     chapterParserAgent,
-   },
-   telemetry: {
-    serviceName: 'ai',
+    serviceAgent,
+  },
+  telemetry: {
+    serviceName: "ai",
     enabled: true,
     export: {
       type: "custom",
@@ -42,8 +44,7 @@ export const mastra = new Mastra({
         secretKey: process.env.LANGFUSE_SECRET_KEY!,
         baseUrl: process.env.LANGFUSE_BASEURL!,
       }),
-    }
-   },
+    },
+  },
   logger: consoleLogger,
 });
-

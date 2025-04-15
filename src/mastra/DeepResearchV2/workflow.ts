@@ -1,4 +1,5 @@
-import { Workflow, Step } from "@mastra/core";
+import { Workflow, Step } from "@mastra/core/workflows";
+import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
 import {
   outlineWriterAgent,
@@ -94,7 +95,11 @@ const outlineStep = new Step({
             "outline.md"
           );
           const userQuery = context.inputData.query;
-          const newQuery = createFeedbackPrompt(userQuery, result, feedbackResponse.text);
+          const newQuery = createFeedbackPrompt(
+            userQuery,
+            result,
+            feedbackResponse.text
+          );
           query = newQuery;
         }
         result = response.text;
@@ -182,20 +187,17 @@ const contentDevelopmentStep = new Step({
       let result = "";
 
       // Content revision loop
-      let chapterStructure = context.getStepResult(outlineStep)
+      let chapterStructure = context.getStepResult(outlineStep);
       let prompt = createContentWriterPrompt(
         chapterStructure,
         chapter.title,
         chapter.description
       );
       while (count < maxRetries && judge === "revise") {
-        const response = await contentWriterAgent.generate(
-          prompt,
-          {
-            temperature: 0.5,
-            frequencyPenalty: 0.5
-          },
-        );
+        const response = await contentWriterAgent.generate(prompt, {
+          temperature: 0.5,
+          frequencyPenalty: 0.5,
+        });
         consoleLogger.info(
           `✈️ Content generated (${count + 1}): \n${response.text}`
         );
@@ -315,9 +317,7 @@ const finalReportStep = new Step({
         "final_report.md"
       );
       // Get feedback from the reflection agent
-      const feedbackPrompt = createFinalReportReflectionPrompt(
-        response.text
-      );
+      const feedbackPrompt = createFinalReportReflectionPrompt(response.text);
       const feedbackResponse =
         await finalReportReflectionAgent.generate(feedbackPrompt);
       consoleLogger.info(
@@ -395,3 +395,40 @@ deepResearchV2Workflow
   .then(contentDevelopmentStep)
   .then(finalReportStep)
   .commit();
+
+// create a workflow as a tool
+export const deepResearchV2Tool = createTool({
+  id: "Exec-Research",
+  description:
+    "A workflow for conducting detailed investigations based on investigation requests.",
+  inputSchema: z
+    .string()
+    .describe(
+      "A document detailing organized user research/investigation requests."
+    ),
+  outputSchema: z
+    .string()
+    .describe("A document detailing the results of the investigation."),
+  execute: async ({ context }): Promise<string> => {
+    console.log("Executing Deep Research V2 Workflow");
+    consoleLogger.info("🏃🏻‍♀️ Executing Deep Research V2 Workflow");
+    const { runId, start } = await deepResearchV2Workflow.createRun();
+    const query = context;
+    const runResult = await start({
+      triggerData: {
+        query,
+      }
+    });
+    const result = runResult.results;
+    consoleLogger.info(`Workflow run completed with result: ${result}`);
+    try{
+      console.log(JSON.stringify(result, null, 5));
+      const finalReport = result[finalReportStep.id];
+      return JSON.stringify(finalReport, null, 5);
+    } catch (error) {
+      consoleLogger.error(`Error parsing workflow result: ${error}`);
+      // Fallback to default behaviour
+      return '{"error": "Failed to parse workflow result"}';
+    }
+  },
+});

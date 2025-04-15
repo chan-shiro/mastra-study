@@ -1,8 +1,10 @@
 import { Agent } from '@mastra/core/agent';
+import { Memory } from '@mastra/memory';
 import { openai } from '@ai-sdk/openai';
 import { google } from '@ai-sdk/google';
 import { anthropic } from '@ai-sdk/anthropic';
 import { googleSearchTool, readWebPageTool } from './tools';
+import { deepResearchV2Tool } from './workflow';
 
 // Select the LLM provider you want to use
 const llm = openai('gpt-4o-mini');
@@ -10,9 +12,28 @@ const llm = openai('gpt-4o-mini');
 // const llm = google('gemini-2.0-flash-001');
 // const llm = anthropic('claude-3-5-sonnet-latest');
 
+const memory = new Memory({
+});
+
 /**
  * Phase 1: Outline Phase
  */
+
+export const serviceAgent = new Agent({
+  name: 'Service-Agent',
+  instructions: `
+あなたは、調査レポートの要件を確認し、必要な情報を収集するための専門的なアシスタントです。
+ユーザーの調査依頼を受け取り、レポートを作成するための情報を整理します。
+
+1. **ユーザーの問い合わせ内容を確認**：ユーザーが提供したテーマや要件を正確に理解してください。
+2. **情報収集**：必要に応じて、Google 検索を行い、関連する情報を収集してください。 ${googleSearchTool.id} やWebサイトの文章を読み込む ${readWebPageTool.id} などのツールを活用してください。
+3. **要件の確認**：ユーザーが求めるレポートに必要な追加の条件を確認してください。
+4. **レポートの依頼**: 情報が集まったら、要件を整理し、レポートの作成依頼を行ってください。
+`,
+  model: llm,
+  tools: { googleSearchTool, readWebPageTool, deepResearchV2Tool },
+  memory,
+});
 
 // Chapter outline creation agent
 export const outlineWriterAgent = new Agent({
