@@ -396,39 +396,52 @@ deepResearchV2Workflow
   .then(finalReportStep)
   .commit();
 
+function isStepSuccess(obj: any): obj is { status: "success"; output: unknown } {
+  return obj && obj.status === "success" && "output" in obj;
+}
+
 // create a workflow as a tool
+const reportInputSchema = z.object({
+  query: z.string().describe("Research request from the user"),
+});
+const reportOutputSchema = z
+  .object({
+    filnalReport: z.string().describe("Final report in markdown format"),
+  })
+  .describe("Final report in markdown format");
+
 export const deepResearchV2Tool = createTool({
   id: "Exec-Research",
   description:
     "A workflow for conducting detailed investigations based on investigation requests.",
-  inputSchema: z
-    .string()
-    .describe(
-      "A document detailing organized user research/investigation requests."
-    ),
-  outputSchema: z
-    .string()
-    .describe("A document detailing the results of the investigation."),
-  execute: async ({ context }): Promise<string> => {
+  inputSchema: reportInputSchema,
+  outputSchema: reportOutputSchema,
+  execute: async ({ context }) => {
     console.log("Executing Deep Research V2 Workflow");
+    const { query } = context;
     consoleLogger.info("🏃🏻‍♀️ Executing Deep Research V2 Workflow");
     const { runId, start } = await deepResearchV2Workflow.createRun();
-    const query = context;
     const runResult = await start({
       triggerData: {
         query,
       }
     });
-    const result = runResult.results;
-    consoleLogger.info(`Workflow run completed with result: ${result}`);
-    try{
-      console.log(JSON.stringify(result, null, 5));
-      const finalReport = result[finalReportStep.id];
-      return JSON.stringify(finalReport, null, 5);
+    try {
+      const result = runResult.results[finalReportStep.id];
+      if (isStepSuccess(result)) {
+        consoleLogger.info(
+          `Workflow run completed with final report: ${result.output}`
+        );
+        return {
+          finalReport: result.output,
+        };
+      }
     } catch (error) {
       consoleLogger.error(`Error parsing workflow result: ${error}`);
       // Fallback to default behaviour
-      return '{"error": "Failed to parse workflow result"}';
+      return {
+        finalReport: "An error occurred while generating the final report.",
+      }
     }
   },
 });
