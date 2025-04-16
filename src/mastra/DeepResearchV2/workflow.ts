@@ -26,18 +26,19 @@ import {
   writeOutputToFile,
 } from "./utils";
 
+const MAX_RETRIES = 1;
 // Step 1: Outline
 const outlineStep = new Step({
   id: "Outline-Writer-Step",
   inputSchema: z.object({
-    query: z.string().describe("Research request from the user"),
+    reportRequest: z.string().describe("Research request from the user"),
   }),
   outputSchema: z.string().describe("Outline in markdown format"),
   execute: async ({ context }) => {
     consoleLogger.info("🏃🏻‍♀️ Executing Outline Writer Step");
     // Trial count
     let count = 0;
-    const maxRetries = 3;
+    const maxRetries = MAX_RETRIES;
 
     // judgement from the judge agent
     let judge: "proceed" | "revise" = "revise";
@@ -179,7 +180,7 @@ const contentDevelopmentStep = new Step({
     for (const chapter of chapters) {
       // Trial count
       let count = 0;
-      const maxRetries = 3;
+      const maxRetries = MAX_RETRIES;
 
       // judgement from the judge agent
       let judge: "proceed" | "revise" = "revise";
@@ -305,7 +306,7 @@ const finalReportStep = new Step({
     writeOutputToFile("", "final_report.md");
     let result = "";
     let count = 0;
-    const maxRetries = 3;
+    const maxRetries = MAX_RETRIES;
     let judge: "proceed" | "revise" = "revise";
 
     while (count < maxRetries && judge === "revise") {
@@ -385,7 +386,7 @@ const finalReportStep = new Step({
 export const deepResearchV2Workflow = new Workflow({
   name: "Deep-Research-V2-Workflow",
   triggerSchema: z.object({
-    query: z.string().describe("Research request from the user"),
+    reportRequest: z.string().describe("調査のリクエスト（調査の目的、調査の範囲、特に調査してほしいことなど）を入力してください。"),
   }),
 });
 
@@ -402,7 +403,7 @@ function isStepSuccess(obj: any): obj is { status: "success"; output: unknown } 
 
 // create a workflow as a tool
 const reportInputSchema = z.object({
-  query: z.string().describe("Research request from the user"),
+  reportRequest: z.string().describe("調査のリクエスト（調査の目的、調査の範囲、特に調査してほしいことなど）を入力してください。"),
 });
 const reportOutputSchema = z
   .object({
@@ -413,27 +414,34 @@ const reportOutputSchema = z
 export const deepResearchV2Tool = createTool({
   id: "Exec-Research",
   description:
-    "A workflow for conducting detailed investigations based on investigation requests.",
+    "詳細な調査を依頼するときに使用します。調査のリクエスト（調査の目的、調査の範囲、特に調査してほしいことなど）を入力してください。",
   inputSchema: reportInputSchema,
   outputSchema: reportOutputSchema,
   execute: async ({ context }) => {
     console.log("Executing Deep Research V2 Workflow");
-    const { query } = context;
+    const { reportRequest } = context;
     consoleLogger.info("🏃🏻‍♀️ Executing Deep Research V2 Workflow");
     const { runId, start } = await deepResearchV2Workflow.createRun();
     const runResult = await start({
       triggerData: {
-        query,
+        reportRequest,
       }
     });
     try {
+      console.log('runResult', JSON.stringify(runResult, null, 5));
       const result = runResult.results[finalReportStep.id];
       if (isStepSuccess(result)) {
         consoleLogger.info(
           `Workflow run completed with final report: ${result.output}`
         );
+        if (!result.output){
+          consoleLogger.error("Final report is empty.");
+          return {
+            finalReport: "No content generated.",
+          };
+        }
         return {
-          finalReport: result.output,
+          finalReport: result.output as string,
         };
       }
     } catch (error) {

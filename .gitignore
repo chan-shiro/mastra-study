@@ -5,5 +5,7 @@ dist
 .env.development
 .env
 *.db
+*.db-shm
+*.db-wal
 workspace/*
 !workspace/README.md
