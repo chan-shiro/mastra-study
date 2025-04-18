@@ -227,7 +227,7 @@ async function extractOrganicResults(
   response: SearchResponse
 ): Promise<OrganicResult[]> {
   if (!response.organic_results) {
-    throw new Error("No organic results found");
+    return [];
   }
   return response.organic_results;
 }

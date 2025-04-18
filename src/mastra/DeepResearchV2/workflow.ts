@@ -26,16 +26,16 @@ import {
   writeOutputToFile,
 } from "./utils";
 
-const MAX_RETRIES = 1;
+const MAX_RETRIES = 2;
 // Step 1: Outline
 const outlineStep = new Step({
   id: "Outline-Writer-Step",
   inputSchema: z.object({
-    reportRequest: z.string().describe("Research request from the user"),
+    query: z.string().describe("Research request from the user"),
   }),
   outputSchema: z.string().describe("Outline in markdown format"),
   execute: async ({ context }) => {
-    consoleLogger.info("🏃🏻‍♀️ Executing Outline Writer Step");
+    consoleLogger.info(`🏃🏻 Executing Outline Writer Step`);
     // Trial count
     let count = 0;
     const maxRetries = MAX_RETRIES;
@@ -49,6 +49,8 @@ const outlineStep = new Step({
 
     // Outline revision loop
     let query = context.triggerData.query;
+    consoleLogger.info(`Outline query: ${query}`);
+
     while (count < maxRetries && judge === "revise") {
       const prompt = createOutlineWriterPrompt(query);
       const response = await outlineWriterAgent.generate(prompt);
@@ -197,7 +199,6 @@ const contentDevelopmentStep = new Step({
       while (count < maxRetries && judge === "revise") {
         const response = await contentWriterAgent.generate(prompt, {
           temperature: 0.5,
-          frequencyPenalty: 0.5,
         });
         consoleLogger.info(
           `✈️ Content generated (${count + 1}): \n${response.text}`
@@ -386,8 +387,8 @@ const finalReportStep = new Step({
 export const deepResearchV2Workflow = new Workflow({
   name: "Deep-Research-V2-Workflow",
   triggerSchema: z.object({
-    reportRequest: z.string().describe("調査のリクエスト（調査の目的、調査の範囲、特に調査してほしいことなど）を入力してください。"),
-  }),
+    query: z.string().describe("調査のリクエスト（調査の目的、調査の範囲、特に調査してほしいことなど）を入力してください。"),
+  }),  
 });
 
 deepResearchV2Workflow
@@ -418,13 +419,13 @@ export const deepResearchV2Tool = createTool({
   inputSchema: reportInputSchema,
   outputSchema: reportOutputSchema,
   execute: async ({ context }) => {
-    console.log("Executing Deep Research V2 Workflow");
     const { reportRequest } = context;
-    consoleLogger.info("🏃🏻‍♀️ Executing Deep Research V2 Workflow");
+    console.log(`🏃🏻‍♀️ Executing Deep Research V2 Workflow: ${JSON.stringify(context, null, 2)}`);
+    console.log(`Report request: ${reportRequest}`);
     const { runId, start } = await deepResearchV2Workflow.createRun();
     const runResult = await start({
       triggerData: {
-        reportRequest,
+        query: reportRequest,
       }
     });
     try {

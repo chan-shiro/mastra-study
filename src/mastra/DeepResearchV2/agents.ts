@@ -7,9 +7,9 @@ import { googleSearchTool, readWebPageTool } from './tools';
 import { deepResearchV2Tool } from './workflow';
 
 // Select the LLM provider you want to use
-const llm = openai('gpt-4o-mini');
+// const llm = openai('gpt-4o-mini');
 
-// const llm = google('gemini-2.0-flash-001');
+const llm = google('gemini-2.5-flash-preview-04-17');
 // const llm = anthropic('claude-3-5-sonnet-latest');
 
 const memory = new Memory();

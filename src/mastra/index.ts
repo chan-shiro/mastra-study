@@ -48,3 +48,4 @@ export const mastra = new Mastra({
   },
   logger: consoleLogger,
 });
+
